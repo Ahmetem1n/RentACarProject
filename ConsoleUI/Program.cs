@@ -11,7 +11,7 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             ICarService carService = new CarManager(new InMemoryCarDal());
-            IBrandService brandService = new BrandManager(new InMemoryBrandCar());
+            IBrandService brandService = new BrandManager(new InMemoryBrandDal());
             IColorService colorService = new ColorManager(new InMemoryColorDal());
 
             carService.Add(new Car { CarId = 4, BrandId = 3, ColorId = 1, DailyPrice = 450, ModelYear = 2018, Description = "Otomatik Vites" });

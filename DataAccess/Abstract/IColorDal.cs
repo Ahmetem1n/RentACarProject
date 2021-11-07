@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataAccess.Abstract
 {
-    public interface IColorDal
+    public interface IColorDal : IEntityRepository<Color>
     {
         Color getCarsByColorId(int colorId);
     }
