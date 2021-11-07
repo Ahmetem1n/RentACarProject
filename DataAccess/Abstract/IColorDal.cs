@@ -7,6 +7,5 @@ namespace DataAccess.Abstract
 {
     public interface IColorDal : IEntityRepository<Color>
     {
-        Color getCarsByColorId(int colorId);
     }
 }

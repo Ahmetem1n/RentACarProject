@@ -41,12 +41,21 @@ namespace DataAccess.Concrete.EntityFramework
 
         public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
-            throw new NotImplementedException();
+            using (ReCapProjectContext reCapProjectContext = new ReCapProjectContext())
+            {
+                return filter == null ? reCapProjectContext.Set<Car>().ToList() : reCapProjectContext.Set<Car>().Where(filter).ToList();
+            }
         }
 
         public void Update(Car entity)
         {
-            throw new NotImplementedException();
+            using (ReCapProjectContext reCapProjectContext= new ReCapProjectContext())
+            {
+                var updatedEntity = reCapProjectContext.Entry(entity);
+                updatedEntity.State = EntityState.Modified;
+                reCapProjectContext.SaveChanges();
+
+            }
         }
     }
 }
