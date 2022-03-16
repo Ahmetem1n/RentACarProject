@@ -10,7 +10,7 @@ namespace Business.Abstract
     public interface IDrivingInformationService
     {
         IDataResult<List<DrivingInformation>> GetAll();
-        IDataResult<DrivingInformation> GetById(int drivingId);
+        IDataResult<DrivingInformation> GetById(long drivingId);
         IResult Add(DrivingInformation drivingInformation);
         IResult Update(DrivingInformation drivingInformation);
         IResult Delete(DrivingInformation drivingInformation);

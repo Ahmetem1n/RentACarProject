@@ -10,7 +10,7 @@ namespace Business.Abstract
     public interface IUserRoleService
     {
         IDataResult<List<UserRole>> GetAll();
-        IDataResult<UserRole> GetById(int roleId);
+        IDataResult<UserRole> GetById(long roleId);
         IResult Add(UserRole userRole);
         IResult Update(UserRole userRole);
         IResult Delete(UserRole userRole);

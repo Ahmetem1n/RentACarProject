@@ -10,7 +10,7 @@ namespace Business.Abstract
     public interface IBranchService
     {
         IDataResult<List<Branch>> GetAll();
-        IDataResult<Branch> GetById(int branchId);
+        IDataResult<Branch> GetById(long branchId);
         IResult Add(Branch branch);
         IResult Update(Branch branch);
         IResult Delete(Branch branch);

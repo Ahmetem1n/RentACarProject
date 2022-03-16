@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Card>>(_cardDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<Card> GetById(int cardId)
+        public IDataResult<Card> GetById(long cardId)
         {
             return new SuccessDataResult<Card>(_cardDal.Get(c => c.CardId == cardId), Messages.Get);
         }

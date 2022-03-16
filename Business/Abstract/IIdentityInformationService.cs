@@ -10,7 +10,7 @@ namespace Business.Abstract
     public interface IIdentityInformationService
     {
         IDataResult<List<IdentityInformation>> GetAll();
-        IDataResult<IdentityInformation> GetById(int identityId);
+        IDataResult<IdentityInformation> GetById(long identityId);
         IResult Add(IdentityInformation identityInformation);
         IResult Update(IdentityInformation identityInformation);
         IResult Delete(IdentityInformation identityInformation);

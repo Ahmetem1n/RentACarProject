@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<CarImage> GetById(int imageId)
+        public IDataResult<CarImage> GetById(long imageId)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.ImageId == imageId), Messages.Get);
         }

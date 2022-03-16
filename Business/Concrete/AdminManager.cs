@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Admin>>(_adminDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<Admin> GetById(int adminId)
+        public IDataResult<Admin> GetById(long adminId)
         {
             return new SuccessDataResult<Admin>(_adminDal.Get(a => a.AdminId == adminId), Messages.Get);
         }

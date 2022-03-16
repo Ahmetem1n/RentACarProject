@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<DrivingInformation>>(_drivingInformationDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<DrivingInformation> GetById(int drivingId)
+        public IDataResult<DrivingInformation> GetById(long drivingId)
         {
             return new SuccessDataResult<DrivingInformation>(_drivingInformationDal.Get(d => d.DrivingId == drivingId), Messages.Get);
         }

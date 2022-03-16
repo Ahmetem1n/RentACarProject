@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<PhoneNumber>>(_phoneNumberDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<PhoneNumber> GetById(int phoneId)
+        public IDataResult<PhoneNumber> GetById(long phoneId)
         {
             return new SuccessDataResult<PhoneNumber>(_phoneNumberDal.Get(p => p.PhoneId == phoneId), Messages.Get);
         }

@@ -14,6 +14,7 @@ namespace Core.DataAccess.EntityFramework
     {
         public void Add(TEntity entity)
         {
+            //using : IDisposable implementation of c#
             using (TContext context = new TContext())// using = performans için, using kullanmayıp direkt contexti new'leyerek de kullanabilirdik
             {
                 var addedEntity = context.Entry(entity);

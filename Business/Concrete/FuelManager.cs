@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Fuel>>(_fuelDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<Fuel> GetById(int fuelId)
+        public IDataResult<Fuel> GetById(long fuelId)
         {
             return new SuccessDataResult<Fuel>(_fuelDal.Get(f => f.FuelId == fuelId), Messages.Get);
         }

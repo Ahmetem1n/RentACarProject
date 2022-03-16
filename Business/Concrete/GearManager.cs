@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Gear>>(_gearDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<Gear> GetById(int gearId)
+        public IDataResult<Gear> GetById(long gearId)
         {
             return new SuccessDataResult<Gear>(_gearDal.Get(g => g.GearId == gearId), Messages.Get);
         }

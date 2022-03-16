@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CaseType>>(_caseTypeDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<CaseType> GetById(int caseId)
+        public IDataResult<CaseType> GetById(long caseId)
         {
             return new SuccessDataResult<CaseType>(_caseTypeDal.Get(c => c.CaseId == caseId), Messages.Get);
         }

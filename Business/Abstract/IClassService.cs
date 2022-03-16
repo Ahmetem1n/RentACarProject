@@ -10,7 +10,7 @@ namespace Business.Abstract
     public interface IClassService
     {
         IDataResult<List<Class>> GetAll();
-        IDataResult<Class> GetById(int classId);
+        IDataResult<Class> GetById(long classId);
         IResult Add(Class classes);
         IResult Update(Class classes);
         IResult Delete(Class classes);

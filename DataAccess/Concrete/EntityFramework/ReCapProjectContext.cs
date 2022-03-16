@@ -11,29 +11,30 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL(@"Server=localhost;Database=rentacar;User=root;Password=12345;");
+            //optionsBuilder.UseMySQL(@"Server=localhost;Database=RentACar;User=root;Password=12345;");
+            optionsBuilder.UseMySQL(@"Server=(localdb)mssqllocaldb;Database=RentACar;Trusted_Connection=true");
         }
 
-        public DbSet<Car> Admins { get; set; }
-        public DbSet<Car> Branchs { get; set; }
+        public DbSet<Admin> Admins { get; set; }
+        public DbSet<Branch> Branchs { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Car> Cars { get; set; }
-        public DbSet<Car> Cards { get; set; }
-        public DbSet<Car> CarImages { get; set; }
-        public DbSet<Car> CaseTypes { get; set; }
-        public DbSet<Car> Classes { get; set; }
+        public DbSet<Card> Cards { get; set; }
+        public DbSet<CarImage> CarImages { get; set; }
+        public DbSet<CaseType> CaseTypes { get; set; }
+        public DbSet<Class> Classes { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<Car> DrivingInformations { get; set; }
-        public DbSet<Car> Employees { get; set; }
-        public DbSet<Car> Fuels { get; set; }
-        public DbSet<Car> Gears { get; set; }
-        public DbSet<Car> IdentityInformations { get; set; }
-        public DbSet<Car> Models { get; set; }
-        public DbSet<Car> PhoneNumbers { get; set; }
-        public DbSet<Car> RentalDetails { get; set; }
+        public DbSet<DrivingInformation> DrivingInformations { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Fuel> Fuels { get; set; }
+        public DbSet<Gear> Gears { get; set; }
+        public DbSet<IdentityInformation> IdentityInformations { get; set; }
+        public DbSet<Model> Models { get; set; }
+        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
+        public DbSet<RentalDetail> RentalDetails { get; set; }
         public DbSet<User> Users { get; set; }
-        public DbSet<Car> UserRoles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
         
         
     }

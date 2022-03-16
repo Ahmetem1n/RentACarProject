@@ -10,7 +10,7 @@ namespace Business.Abstract
     public interface ICaseTypeService
     {
         IDataResult<List<CaseType>> GetAll();
-        IDataResult<CaseType> GetById(int caseId);
+        IDataResult<CaseType> GetById(long caseId);
         IResult Add(CaseType caseType);
         IResult Update(CaseType caseType);
         IResult Delete(CaseType caseType);

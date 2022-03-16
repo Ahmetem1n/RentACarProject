@@ -10,7 +10,7 @@ namespace Business.Abstract
     public interface IGearService
     {
         IDataResult<List<Gear>> GetAll();
-        IDataResult<Gear> GetById(int gearId);
+        IDataResult<Gear> GetById(long gearId);
         IResult Add(Gear gear);
         IResult Update(Gear gear);
         IResult Delete(Gear gear);

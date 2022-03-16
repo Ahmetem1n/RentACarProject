@@ -2,7 +2,6 @@
 using Business.Abstract;
 using Business.Concrete;
 using DataAccess.Concrete.EntityFramework;
-using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 
 namespace ConsoleUI
@@ -15,6 +14,7 @@ namespace ConsoleUI
             IColorService colorService = new ColorManager(new EfColorDal());
             ICarService carService = new CarManager(new EfCarDal());
 
+            
             //CarTest(brandService, colorService, carService);
 
             //BrandTest(brandService);

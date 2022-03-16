@@ -35,7 +35,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Branch>>(_branchDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<Branch> GetById(int branchId)
+        public IDataResult<Branch> GetById(long branchId)
         {
             return new SuccessDataResult<Branch>(_branchDal.Get(b => b.BranchId == branchId), Messages.Get);
         }
