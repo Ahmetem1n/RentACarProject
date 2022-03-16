@@ -6,7 +6,7 @@ using Core.DataAccess;
 
 namespace DataAccess.Abstract
 {
-    public interface IUserRoleDal : IEntityRepository<Car>
+    public interface IUserRoleDal : IEntityRepository<UserRole>
     {
 
     }

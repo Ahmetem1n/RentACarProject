@@ -6,7 +6,7 @@ using Core.DataAccess;
 
 namespace DataAccess.Abstract
 {
-    public interface IEmployeeDal : IEntityRepository<Car>
+    public interface IEmployeeDal : IEntityRepository<Employee>
     {
 
     }

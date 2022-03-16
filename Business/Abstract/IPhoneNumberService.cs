@@ -11,9 +11,9 @@ namespace Business.Abstract
     {
         IDataResult<List<PhoneNumber>> GetAll();
         IDataResult<PhoneNumber> GetById(int phoneId);
-        IResult Add(PhoneNumber phone);
-        IResult Update(PhoneNumber phone);
-        IResult Delete(PhoneNumber phone);
+        IResult Add(PhoneNumber phoneNumber);
+        IResult Update(PhoneNumber phoneNumber);
+        IResult Delete(PhoneNumber phoneNumber);
 
     }
 }

@@ -24,25 +24,10 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Added);
         }
 
-        public IResult Add(Branch branch)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IResult Add(Branch branch)
-        {
-            throw new NotImplementedException();
-        }
-
         public IResult Delete(Branch branch)
         {
             _branchDal.Delete(branch);
             return new SuccessResult(Messages.Deleted);
-        }
-
-        public IResult Delete(Car branch)
-        {
-            throw new NotImplementedException();
         }
 
         public IDataResult<List<Branch>> GetAll()
@@ -59,21 +44,6 @@ namespace Business.Concrete
         {
             _branchDal.Update(branch);
             return new SuccessResult(Messages.Updated);
-        }
-
-        public IResult Update(Car branch)
-        {
-            throw new NotImplementedException();
-        }
-
-        IDataResult<List<Car>> IBranchService.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        IDataResult<Car> IBranchService.GetById(int branchId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

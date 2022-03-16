@@ -18,57 +18,32 @@ namespace Business.Concrete
             _cardDal = cardDal;
         }
 
-        public IResult Add(Car card)
+        public IResult Add(Card card)
         {
             _cardDal.Add(card);
             return new SuccessResult(Messages.Added);
         }
 
-        public IResult Add(Car card)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IResult Delete(Car card)
+        public IResult Delete(Card card)
         {
             _cardDal.Delete(card);
             return new SuccessResult(Messages.Deleted);
         }
 
-        public IResult Delete(Car card)
+        public IDataResult<List<Card>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Card>>(_cardDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<List<Car>> GetAll()
+        public IDataResult<Card> GetById(int cardId)
         {
-            return new SuccessDataResult<List<Car>>(_cardDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<Card>(_cardDal.Get(c => c.CardId == cardId), Messages.Get);
         }
 
-        public IDataResult<Car> GetById(int cardId)
-        {
-            return new SuccessDataResult<Car>(_cardDal.Get(b => b.CardId == cardId), Messages.Get);
-        }
-
-        public IResult Update(Car card)
+        public IResult Update(Card card)
         {
             _cardDal.Update(card);
             return new SuccessResult(Messages.Updated);
-        }
-
-        public IResult Update(Car card)
-        {
-            throw new NotImplementedException();
-        }
-
-        IDataResult<List<Car>> ICardService.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        IDataResult<Car> ICardService.GetById(int cardId)
-        {
-            throw new NotImplementedException();
         }
     }
 }

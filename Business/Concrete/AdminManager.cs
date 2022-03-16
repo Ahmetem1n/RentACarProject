@@ -18,57 +18,32 @@ namespace Business.Concrete
             _adminDal = adminDal;
         }
 
-        public IResult Add(Car admin)
+        public IResult Add(Admin admin)
         {
             _adminDal.Add(admin);
             return new SuccessResult(Messages.Added);
         }
 
-        public IResult Add(Car admin)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IResult Delete(Car admin)
+        public IResult Delete(Admin admin)
         {
             _adminDal.Delete(admin);
             return new SuccessResult(Messages.Deleted);
         }
 
-        public IResult Delete(Car admin)
+        public IDataResult<List<Admin>> GetAll()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<Admin>>(_adminDal.GetAll(), Messages.Listed);
         }
 
-        public IDataResult<List<Car>> GetAll()
+        public IDataResult<Admin> GetById(int adminId)
         {
-            return new SuccessDataResult<List<Car>>(_adminDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<Admin>(_adminDal.Get(a => a.AdminId == adminId), Messages.Get);
         }
 
-        public IDataResult<Car> GetById(int adminId)
-        {
-            return new SuccessDataResult<Car>(_adminDal.Get(a => a.AdminId == adminId), Messages.Get);
-        }
-
-        public IResult Update(Car admin)
+        public IResult Update(Admin admin)
         {
             _adminDal.Update(admin);
             return new SuccessResult(Messages.Updated);
-        }
-
-        public IResult Update(Car admin)
-        {
-            throw new NotImplementedException();
-        }
-
-        IDataResult<List<Car>> IAdminService.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        IDataResult<Car> IAdminService.GetById(int adminId)
-        {
-            throw new NotImplementedException();
         }
     }
 }
