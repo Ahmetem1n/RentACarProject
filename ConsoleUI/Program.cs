@@ -10,19 +10,29 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            IBrandService brandService = new BrandManager(new EfBrandDal());
+            BrandManager brandManager = new BrandManager(new EfBrandDal());
             IColorService colorService = new ColorManager(new EfColorDal());
             ICarService carService = new CarManager(new EfCarDal());
+            IFuelService fuelService = new FuelManager(new EfFuelDal());
 
-            
             //CarTest(brandService, colorService, carService);
 
-            //BrandTest(brandService);
+            BrandTest(brandManager);
 
             //ColorTest(colorService);
-        }
 
-        private static void ColorTest(IColorService colorService)
+            //FuelTest(fuelService);
+        }
+        private static void FuelTest(IFuelService fuelService)
+        {
+            var result = fuelService.GetById(1);
+            Console.WriteLine(result.Data.FuelName);
+            //foreach(var i in result.Data)
+            //{
+            //    Console.WriteLine(i.FuelName);
+            //}
+        }
+            private static void ColorTest(IColorService colorService)
         {
             foreach( var color in colorService.GetAll().Data){
                 Console.WriteLine(color.ColorName);
