@@ -12,6 +12,7 @@ namespace Business.ValidationRules.FluentValidation
         public UserRoleValidator()
         {
             RuleFor(u => u.RoleId).NotEmpty();
+            RuleFor(u => u.RoleName).NotEmpty();
         }
     }
 }

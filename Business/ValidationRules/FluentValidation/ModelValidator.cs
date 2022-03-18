@@ -12,6 +12,7 @@ namespace Business.ValidationRules.FluentValidation
         public ModelValidator()
         {
             RuleFor(m => m.ModelId).NotEmpty();
+            RuleFor(m => m.ModelName).NotEmpty();
         }
     }
 }

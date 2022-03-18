@@ -12,6 +12,8 @@ namespace Business.ValidationRules.FluentValidation
         public PhoneNumberValidator()
         {
             RuleFor(p => p.PhoneId).NotEmpty();
+            RuleFor(p => p.UserId).NotEmpty();
+            RuleFor(p => p.PhoneNo).NotEmpty();
         }
     }
 }

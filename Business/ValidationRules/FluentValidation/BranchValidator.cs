@@ -12,6 +12,8 @@ namespace Business.ValidationRules.FluentValidation
         public BranchValidator()
         {
             RuleFor(b => b.BranchId).NotEmpty();
+            RuleFor(b => b.CityId).NotEmpty();
+            RuleFor(b => b.BranchName).NotEmpty();
         }
     }
 }

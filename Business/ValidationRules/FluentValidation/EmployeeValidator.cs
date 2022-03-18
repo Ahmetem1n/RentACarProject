@@ -12,6 +12,7 @@ namespace Business.ValidationRules.FluentValidation
         public EmployeeValidator()
         {
             RuleFor(e => e.EmployeeId).NotEmpty();
+            RuleFor(e => e.UserId).NotEmpty();
         }
     }
 }

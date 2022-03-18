@@ -12,7 +12,7 @@ namespace Business.ValidationRules.FluentValidation
         public FuelValidator()
         {
             RuleFor(f => f.FuelId).NotEmpty();
-            
+            RuleFor(f => f.FuelName).NotEmpty();
         }
     }
 }

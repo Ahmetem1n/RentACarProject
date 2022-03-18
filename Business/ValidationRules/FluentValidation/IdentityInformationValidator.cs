@@ -12,7 +12,14 @@ namespace Business.ValidationRules.FluentValidation
         public IdentityInformationValidator()
         {
             RuleFor(ı => ı.IdentityId).NotEmpty();
-            
+            RuleFor(ı => ı.SerialNumber).NotEmpty();
+            RuleFor(ı => ı.FatherName).NotEmpty();
+            RuleFor(ı => ı.MotherName).NotEmpty();
+            RuleFor(ı => ı.BirthPlace).NotEmpty();
+            RuleFor(ı => ı.BirthYear).NotEmpty();
+            RuleFor(ı => ı.MaritalStatus).NotEmpty();
+            RuleFor(ı => ı.Gender).NotEmpty();
+            RuleFor(ı => ı.ValidUntil).NotEmpty();
         }
     }
 }

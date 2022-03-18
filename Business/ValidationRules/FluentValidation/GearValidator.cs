@@ -12,7 +12,7 @@ namespace Business.ValidationRules.FluentValidation
         public GearValidator()
         {
             RuleFor(g => g.GearId).NotEmpty();
-            
+            RuleFor(g => g.GearName).NotEmpty();
         }
     }
 }
