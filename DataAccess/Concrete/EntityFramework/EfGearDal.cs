@@ -10,7 +10,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfGearDal : EfEntityRepositoryBase<Gear,ReCapProjectContext>, IGearDal
+    public class EfGearDal : EfEntityRepositoryBase<Gear,RentACarProjectContext>, IGearDal
     {
        
     }

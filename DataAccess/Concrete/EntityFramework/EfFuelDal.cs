@@ -10,7 +10,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfFuelDal : EfEntityRepositoryBase<Fuel,ReCapProjectContext>, IFuelDal
+    public class EfFuelDal : EfEntityRepositoryBase<Fuel,RentACarProjectContext>, IFuelDal
     {
        
     }

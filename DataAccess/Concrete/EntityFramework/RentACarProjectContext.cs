@@ -7,7 +7,7 @@ using System.Text;
 namespace DataAccess.Concrete.EntityFramework
 {
     // Context : DB tabloları ile proje classlarını bağlamak
-    public class ReCapProjectContext : DbContext
+    public class RentACarProjectContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -22,22 +22,32 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Card> Cards { get; set; }
-        //public DbSet<CarImage> CarImages { get; set; }
-        //public DbSet<CaseType> CaseTypes { get; set; }
+        public DbSet<CarImage> CarImages { get; set; }       
+        public DbSet<CaseType> CaseTypes { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Customer> Customers { get; set; }
-        //public DbSet<DrivingInformation> DrivingInformations { get; set; }
+        public DbSet<DrivingInformation> DrivingInformations { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Fuel> Fuels { get; set; }
         public DbSet<Gear> Gears { get; set; }
-        //public DbSet<IdentityInformation> IdentityInformations { get; set; }
+        public DbSet<IdentityInformation> IdentityInformations { get; set; }
         public DbSet<Model> Models { get; set; }
-        //public DbSet<PhoneNumber> PhoneNumbers { get; set; }
-        //public DbSet<RentalDetail> RentalDetails { get; set; }
+        public DbSet<PhoneNumber> PhoneNumbers { get; set; }
+        public DbSet<RentalDetail> RentalDetails { get; set; }
         public DbSet<User> Users { get; set; }
-        //public DbSet<UserRole> UserRoles { get; set; }
-        
-        
+        public DbSet<UserRole> UserRoles { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CarImage>().HasKey(c => c.ImageId);
+            modelBuilder.Entity<CaseType>().HasKey(c => c.CaseId);
+            modelBuilder.Entity<DrivingInformation>().HasKey(d => d.DrivingId);
+            modelBuilder.Entity<IdentityInformation>().HasKey(ı => ı.IdentityId);
+            modelBuilder.Entity<PhoneNumber>().HasKey(p => p.PhoneId);
+            modelBuilder.Entity<RentalDetail>().HasKey(r => r.RentalId);
+            modelBuilder.Entity<UserRole>().HasKey(u => u.RoleId);
+        }
     }
 }
