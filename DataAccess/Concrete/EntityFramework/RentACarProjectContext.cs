@@ -1,4 +1,5 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities.Concrete;
+using Entities.Concrete;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -35,10 +36,14 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Model> Models { get; set; }
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
         public DbSet<RentalDetail> RentalDetails { get; set; }
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
 
 
+
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<Core.Entities.Concrete.User> Users { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CarImage>().HasKey(c => c.ImageId);
@@ -48,6 +53,8 @@ namespace DataAccess.Concrete.EntityFramework
             modelBuilder.Entity<PhoneNumber>().HasKey(p => p.PhoneId);
             modelBuilder.Entity<RentalDetail>().HasKey(r => r.RentalId);
             modelBuilder.Entity<UserRole>().HasKey(u => u.RoleId);
+            ///User - OperationClaim - UserOperationClaim Eklenecek, User Entities'ten, UserRole tamamen Silinecek
+            ///45. satırdaki user düzeltilecek
         }
     }
 }
