@@ -2,9 +2,9 @@
 {
     public class UserOperationClaim:IEntity
     {
-        public int DetailId { get; set; }
-        public int UserId { get; set; }
-        public int ClaimId { get; set; }
+        public long DetailId { get; set; }
+        public long UserId { get; set; }
+        public long ClaimId { get; set; }
     }
 
 }
