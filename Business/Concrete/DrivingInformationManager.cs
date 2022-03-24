@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -9,6 +10,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
+    [SecuredOperation("admin,employee")]
     public class DrivingInformationManager : IDrivingInformationService
     {
         IDrivingInformationDal _drivingInformationDal;

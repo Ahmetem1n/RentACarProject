@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -18,12 +19,14 @@ namespace Business.Concrete
             _classDal = classDal;
         }
 
+        [SecuredOperation("admin,employee")]
         public IResult Add(Class classes)
         {
             _classDal.Add(classes);
             return new SuccessResult(Messages.Added);
         }
 
+        [SecuredOperation("admin,employee")]
         public IResult Delete(Class classes)
         {
             _classDal.Delete(classes);
@@ -40,6 +43,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Class>(_classDal.Get(c => c.ClassId == classId), Messages.Get);
         }
 
+        [SecuredOperation("admin,employee")]
         public IResult Update(Class classes)
         {
             _classDal.Update(classes);

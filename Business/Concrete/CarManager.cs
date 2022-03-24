@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -18,6 +19,7 @@ namespace Business.Concrete
         {
             _carDal = carDal;
         }
+        [SecuredOperation("admin,employee")]
         public IResult Add(Car car)
         {
             if (car.DailyPrice > 0 && car.Description.Length >= 2)
@@ -33,6 +35,7 @@ namespace Business.Concrete
 
         }
 
+        [SecuredOperation("admin,employee")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
@@ -65,6 +68,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId), Messages.Listed);
         }
 
+        [SecuredOperation("admin,employee")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);

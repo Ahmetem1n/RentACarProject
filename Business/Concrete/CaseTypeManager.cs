@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -18,12 +19,14 @@ namespace Business.Concrete
             _caseTypeDal = caseTypeDal;
         }
 
+        [SecuredOperation("admin,employee")]
         public IResult Add(CaseType caseType)
         {
             _caseTypeDal.Add(caseType);
             return new SuccessResult(Messages.Added);
         }
 
+        [SecuredOperation("admin,employee")]
         public IResult Delete(CaseType caseType)
         {
             _caseTypeDal.Delete(caseType);
@@ -40,6 +43,7 @@ namespace Business.Concrete
             return new SuccessDataResult<CaseType>(_caseTypeDal.Get(c => c.CaseId == caseId), Messages.Get);
         }
 
+        [SecuredOperation("admin,employee")]
         public IResult Update(CaseType caseType)
         {
             _caseTypeDal.Update(caseType);

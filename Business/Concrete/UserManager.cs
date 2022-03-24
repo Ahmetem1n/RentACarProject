@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
@@ -9,6 +10,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
+    [SecuredOperation("admin,employee")]
     public class UserManager : IUserService
     {
         IUserDal _userDal;

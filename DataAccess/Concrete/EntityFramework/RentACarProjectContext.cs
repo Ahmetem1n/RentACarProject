@@ -25,6 +25,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Card> Cards { get; set; }
         public DbSet<CarImage> CarImages { get; set; }       
         public DbSet<CaseType> CaseTypes { get; set; }
+        public DbSet<City> Cities { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<Customer> Customers { get; set; }
@@ -36,13 +37,8 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Model> Models { get; set; }
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
         public DbSet<RentalDetail> RentalDetails { get; set; }
-        //public DbSet<User> Users { get; set; }
-        public DbSet<UserRole> UserRoles { get; set; }
-
-
-
         public DbSet<OperationClaim> OperationClaims { get; set; }
-        public DbSet<Core.Entities.Concrete.User> Users { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -52,9 +48,8 @@ namespace DataAccess.Concrete.EntityFramework
             modelBuilder.Entity<IdentityInformation>().HasKey(ı => ı.IdentityId);
             modelBuilder.Entity<PhoneNumber>().HasKey(p => p.PhoneId);
             modelBuilder.Entity<RentalDetail>().HasKey(r => r.RentalId);
-            modelBuilder.Entity<UserRole>().HasKey(u => u.RoleId);
-            ///User - OperationClaim - UserOperationClaim Eklenecek, User Entities'ten, UserRole tamamen Silinecek
-            ///45. satırdaki user düzeltilecek
+            modelBuilder.Entity<OperationClaim>().HasKey(o => o.ClaimId);
+            modelBuilder.Entity<UserOperationClaim>().HasKey(u => u.DetailId);
         }
     }
 }

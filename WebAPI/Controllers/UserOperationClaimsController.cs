@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Entities.Concrete;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,18 +12,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserRolesController : ControllerBase
+    public class UserOperationClaimsController : ControllerBase
     {
-        IUserRoleService _userRoleService;
-        public UserRolesController(IUserRoleService userRoleService)
+        IUserOperationClaimService _userOperationClaimService;
+        public UserOperationClaimsController(IUserOperationClaimService userOperationClaimService)
         {
-            _userRoleService = userRoleService;
+            _userOperationClaimService = userOperationClaimService;
         }
 
         [HttpGet("getAll")]
         public IActionResult GetAll()
         {
-            var result = _userRoleService.GetAll();
+            var result = _userOperationClaimService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -31,20 +32,20 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int roleId)
+        public IActionResult GetById(int detailId)
         {
-            var result = _userRoleService.GetById(roleId);
+            var result = _userOperationClaimService.GetById(detailId);
             if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest(result);
-        }   
+        }
 
         [HttpPost("add")]
-        public IActionResult Add(UserRole userRole)
+        public IActionResult Add(UserOperationClaim userOperationClaim)
         {
-            var result = _userRoleService.Add(userRole);
+            var result = _userOperationClaimService.Add(userOperationClaim);
             if (result.Success)
             {
                 return Ok(result);
@@ -53,9 +54,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(UserRole userRole)
+        public IActionResult Update(UserOperationClaim userOperationClaim)
         {
-            var result = _userRoleService.Update(userRole);
+            var result = _userOperationClaimService.Update(userOperationClaim);
             if (result.Success)
             {
                 return Ok(result);
@@ -64,9 +65,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(UserRole userRole)
+        public IActionResult Delete(UserOperationClaim userOperationClaim)
         {
-            var result = _userRoleService.Delete(userRole);
+            var result = _userOperationClaimService.Delete(userOperationClaim);
             if (result.Success)
             {
                 return Ok(result);

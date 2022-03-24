@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public class UserRole : IEntity
+    public class City : IEntity
     {
-        public long RoleId { get; set; }
-        public string RoleName { get; set; }
+        public int CityId { get; set; }
+        public string CityName { get; set; }
     }
 }

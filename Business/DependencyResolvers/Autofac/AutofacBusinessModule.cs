@@ -38,6 +38,9 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<CaseTypeManager>().As<ICaseTypeService>();
             builder.RegisterType<EfCaseTypeDal>().As<ICaseTypeDal>();
 
+            builder.RegisterType<CityManager>().As<ICityService>();
+            builder.RegisterType<EfCityDal>().As<ICityDal>();
+
             builder.RegisterType<ClassManager>().As<IClassService>();
             builder.RegisterType<EfClassDal>().As<IClassDal>();
 
@@ -74,8 +77,11 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUserDal>().As<IUserDal>();
 
-            builder.RegisterType<UserRoleManager>().As<IUserRoleService>();
-            builder.RegisterType<EfUserRoleDal>().As<IUserRoleDal>();
+            builder.RegisterType<OperationClaimManager>().As<IOperationClaimService>();
+            builder.RegisterType<EfOperationClaimDal>().As<IOperationClaimDal>();
+
+            builder.RegisterType<UserOperationClaimManager>().As<IUserOperationClaimService>();
+            builder.RegisterType<EfUserOperationClaimDal>().As<IUserOperationClaimDal>();
 
             builder.RegisterType<AuthManager>().As<IAuthService>();
             builder.RegisterType<JwtHelper>().As<ITokenHelper>();
