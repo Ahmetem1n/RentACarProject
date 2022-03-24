@@ -11,7 +11,6 @@ namespace Business.ValidationRules.FluentValidation
 
         public CustomerValidator()
         {
-            RuleFor(c => c.CustomerId).NotEmpty();
             RuleFor(c => c.UserId).NotEmpty();
             RuleFor(c => c.IdentityId).NotEmpty();
             RuleFor(c => c.DrivingId).NotEmpty();

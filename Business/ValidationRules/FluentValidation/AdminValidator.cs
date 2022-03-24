@@ -11,7 +11,6 @@ namespace Business.ValidationRules.FluentValidation
 
         public AdminValidator()
         {
-            RuleFor(a => a.AdminId).NotEmpty();
             RuleFor(a => a.UserId).NotEmpty();
         }
     }

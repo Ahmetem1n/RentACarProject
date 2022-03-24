@@ -11,7 +11,6 @@ namespace Business.ValidationRules.FluentValidation
 
         public IdentityInformationValidator()
         {
-            RuleFor(ı => ı.IdentityId).NotEmpty();
             RuleFor(ı => ı.SerialNumber).NotEmpty();
             RuleFor(ı => ı.FatherName).NotEmpty();
             RuleFor(ı => ı.MotherName).NotEmpty();

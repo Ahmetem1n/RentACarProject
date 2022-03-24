@@ -10,7 +10,6 @@ namespace Business.ValidationRules.FluentValidation
     {
         public OperationClaimValidator()
         {
-            RuleFor(o => o.ClaimId).NotEmpty();
             RuleFor(o => o.ClaimName).NotEmpty();
         }
     }

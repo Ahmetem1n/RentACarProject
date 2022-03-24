@@ -11,7 +11,6 @@ namespace Business.ValidationRules.FluentValidation
 
         public CaseTypeValidator()
         {
-            RuleFor(c => c.CaseId).NotEmpty();
             RuleFor(c => c.CaseName).NotEmpty();
         }
     }

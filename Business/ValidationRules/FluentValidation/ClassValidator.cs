@@ -11,7 +11,6 @@ namespace Business.ValidationRules.FluentValidation
 
         public ClassValidator()
         {
-            RuleFor(c => c.ClassId).NotEmpty();
             RuleFor(c => c.ClassName).NotEmpty();
         }
     }
