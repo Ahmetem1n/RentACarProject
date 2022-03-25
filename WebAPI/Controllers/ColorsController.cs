@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int colorId)
+        public IActionResult GetById(long colorId)
         {
             var result = _colorService.GetById(colorId);
             if (result.Success)
@@ -39,7 +39,7 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
-        }   
+        }
 
         [HttpPost("add")]
         public IActionResult Add(Color color)

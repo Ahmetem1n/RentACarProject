@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int phoneId)
+        public IActionResult GetById(long phoneId)
         {
             var result = _phoneNumberService.GetById(phoneId);
             if (result.Success)

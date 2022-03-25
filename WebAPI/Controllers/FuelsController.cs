@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int fuelId)
+        public IActionResult GetById(long fuelId)
         {
             var result = _fuelService.GetById(fuelId);
             if (result.Success)

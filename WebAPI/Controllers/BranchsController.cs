@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int branchId)
+        public IActionResult GetById(long branchId)
         {
             var result = _branchService.GetById(branchId);
             if (result.Success)

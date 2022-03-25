@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int identityId)
+        public IActionResult GetById(long identityId)
         {
             var result = _identityInformationService.GetById(identityId);
             if (result.Success)

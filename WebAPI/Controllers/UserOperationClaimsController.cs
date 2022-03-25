@@ -32,7 +32,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int detailId)
+        public IActionResult GetById(long detailId)
         {
             var result = _userOperationClaimService.GetById(detailId);
             if (result.Success)

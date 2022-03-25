@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int gearId)
+        public IActionResult GetById(long gearId)
         {
             var result = _gearService.GetById(gearId);
             if (result.Success)

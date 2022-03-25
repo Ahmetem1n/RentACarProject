@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int drivingId)
+        public IActionResult GetById(long drivingId)
         {
             var result = _drivingInformationService.GetById(drivingId);
             if (result.Success)

@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int caseId)
+        public IActionResult GetById(long caseId)
         {
             var result = _caseTypeService.GetById(caseId);
             if (result.Success)

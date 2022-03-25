@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(int adminId)
+        public IActionResult GetById(long adminId)
         {
             var result = _adminService.GetById(adminId);
             if (result.Success)
