@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("admin,employee")]
+    //[SecuredOperation("admin,employee")]
     public class UserManager : IUserService
     {
         IUserDal _userDal;
