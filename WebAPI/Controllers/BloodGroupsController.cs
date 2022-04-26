@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Core.Entities.Concrete;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,29 +11,18 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class BloodGroupsController : ControllerBase
     {
-        IUserService _userService;
-        public UsersController(IUserService userService)
+        IBloodGroupService _bloodGroupService;
+        public BloodGroupsController(IBloodGroupService bloodGroupService)
         {
-            _userService = userService;
+            _bloodGroupService = bloodGroupService;
         }
 
         [HttpGet("getAll")]
         public IActionResult GetAll()
         {
-            var result = _userService.GetAll();
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest(result);
-        }
-
-        [HttpGet("getByRoles")]
-        public IActionResult GetByRoles(string claimName)
-        {
-            var result = _userService.GetByRoles(claimName);
+            var result = _bloodGroupService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -42,9 +31,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getById")]
-        public IActionResult GetById(long userId)
+        public IActionResult GetById(long bloodGroupId)
         {
-            var result = _userService.GetById(userId);
+            var result = _bloodGroupService.GetById(bloodGroupId);
             if (result.Success)
             {
                 return Ok(result);
@@ -53,9 +42,9 @@ namespace WebAPI.Controllers
         }   
 
         [HttpPost("add")]
-        public IActionResult Add(User user)
+        public IActionResult Add(BloodGroup bloodGroup)
         {
-            var result = _userService.Add(user);
+            var result = _bloodGroupService.Add(bloodGroup);
             if (result.Success)
             {
                 return Ok(result);
@@ -64,9 +53,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("update")]
-        public IActionResult Update(User user)
+        public IActionResult Update(BloodGroup bloodGroup)
         {
-            var result = _userService.Update(user);
+            var result = _bloodGroupService.Update(bloodGroup);
             if (result.Success)
             {
                 return Ok(result);
@@ -75,9 +64,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(User user)
+        public IActionResult Delete(BloodGroup bloodGroup)
         {
-            var result = _userService.Delete(user);
+            var result = _bloodGroupService.Delete(bloodGroup);
             if (result.Success)
             {
                 return Ok(result);

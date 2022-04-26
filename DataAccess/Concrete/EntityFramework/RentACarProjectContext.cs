@@ -19,6 +19,7 @@ namespace DataAccess.Concrete.EntityFramework
         }
 
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<BloodGroup> BloodGroups { get; set; }
         public DbSet<Branch> Branchs { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Car> Cars { get; set; }
@@ -42,6 +43,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BloodGroup>().HasKey(b => b.BloodGroupId);
             modelBuilder.Entity<CarImage>().HasKey(c => c.ImageId);
             modelBuilder.Entity<CaseType>().HasKey(c => c.CaseId);
             modelBuilder.Entity<DrivingInformation>().HasKey(d => d.DrivingId);

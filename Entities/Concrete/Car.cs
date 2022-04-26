@@ -14,7 +14,7 @@ namespace Entities.Concrete
         public long GearId { get; set; }
         public long FuelId { get; set; }
         public long ClassId { get; set; }
-        public long BodyId { get; set; }
+        public long CaseId { get; set; }
         public long ModelId { get; set; }
         public string CarPlate { get; set; }
         public double CarStar { get; set; }

@@ -8,6 +8,8 @@ namespace DataAccess.Abstract
 {
     public interface IUserDal : IEntityRepository<User>
     {
-        List<OperationClaim> GetClaims(User user);
+        OperationClaim GetClaim(User user);
+        List<User> GetByRoles(string claimName);
+
     }
 }

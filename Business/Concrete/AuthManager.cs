@@ -28,6 +28,9 @@ namespace Business.Concrete
                 Email = userForRegisterDto.Email,
                 FirstName = userForRegisterDto.FirstName,
                 LastName = userForRegisterDto.LastName,
+                NationalityId = userForRegisterDto.NationalityId,
+                BirthYear = userForRegisterDto.BirthYear,
+                Photo = userForRegisterDto.Photo,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Status = true
@@ -54,7 +57,7 @@ namespace Business.Concrete
 
         public IResult UserExists(string email)
         {
-            if (_userService.GetByMail(email) != null)
+            if (_userService.GetByMail(email).Data != null)
             {
                 return new ErrorResult(Messages.UserAlreadyExists);
             }
@@ -63,7 +66,7 @@ namespace Business.Concrete
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
-            var claims = _userService.GetClaims(user).Data;
+            var claims = _userService.GetClaim(user).Data;
             var accessToken = _tokenHelper.CreateToken(user, claims);
             return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
         }

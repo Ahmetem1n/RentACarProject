@@ -19,15 +19,15 @@ namespace Business.Constants
         public static string ErrorUpdated = "Güncelleme işlemi yapılamadı.";
         public static string ErrorListed = "Listeleme işlemi yapılamadı.";
         public static string ErrorGet = "Detay getirme işlemi yapılamadı.";
-        public static string Added="";
-        public static string b;
-        public static string c;
-        public static string AuthorizationDenied;
-        internal static User UserNotFound;
-        internal static string UserRegistered;
-        internal static User PasswordError;
-        internal static string SuccessfulLogin;
-        internal static string UserAlreadyExists;
-        internal static string AccessTokenCreated;
+        public static string Added="1";
+        public static string b="1";
+        public static string c="1";
+        public static string AuthorizationDenied="Yetki Yok";
+        public static string UserNotFound="Kullanıcı Bulunamadı";
+        public static string UserRegistered="1";
+        public static string PasswordError="1";
+        public static string SuccessfulLogin="1";
+        public static string UserAlreadyExists="1";
+        public static string AccessTokenCreated="1";
     }
 }

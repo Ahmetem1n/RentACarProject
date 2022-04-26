@@ -11,7 +11,7 @@ namespace Entities.Concrete
         public long UserId { get; set; }
         public string FullName { get; set; }
         public long CardNo { get; set; }
-        public string ExpiryDate { get; set; }
+        public DateTime ExpiryDate { get; set; }
         public int Cvv { get; set; }
     }
 }

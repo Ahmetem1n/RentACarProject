@@ -44,7 +44,7 @@ namespace Business.Concrete
 
         public IResult Update(Customer customer)
         {
-            _customerDal.Delete(customer);
+            _customerDal.Update(customer);
             return new SuccessResult(Messages.Updated);
         }
     }
