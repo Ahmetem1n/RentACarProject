@@ -30,6 +30,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getPhoneNumberDetails")]
+        public IActionResult GetPhoneNumberDetails()
+        {
+            var result = _phoneNumberService.GetPhoneNumberDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("getById")]
         public IActionResult GetById(long phoneId)
         {
@@ -39,7 +50,7 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
-        }   
+        }
 
         [HttpPost("add")]
         public IActionResult Add(PhoneNumber phoneNumber)

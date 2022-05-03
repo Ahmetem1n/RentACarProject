@@ -15,13 +15,12 @@ namespace Entities.Concrete
         public long FuelId { get; set; }
         public long ClassId { get; set; }
         public long CaseId { get; set; }
-        public long ModelId { get; set; }
         public string CarPlate { get; set; }
         public double CarStar { get; set; }
         public int ModelYear { get; set; }
         public int DailyPrice { get; set; }
         public string Description { get; set; }
-        public Boolean CarUsable { get; set; }
+        public string CarUsable { get; set; }
         public string CarLocation { get; set; }
 }
 }

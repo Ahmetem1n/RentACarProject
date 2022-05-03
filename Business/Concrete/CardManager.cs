@@ -3,6 +3,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -38,6 +39,11 @@ namespace Business.Concrete
         public IDataResult<Card> GetById(long cardId)
         {
             return new SuccessDataResult<Card>(_cardDal.Get(c => c.CardId == cardId), Messages.Get);
+        }
+
+        public IDataResult<List<CardDetailDto>> GetCardDetails()
+        {
+            return new SuccessDataResult<List<CardDetailDto>>(_cardDal.GetCardDetails(), Messages.Get);
         }
 
         public IResult Update(Card card)

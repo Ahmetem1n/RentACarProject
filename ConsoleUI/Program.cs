@@ -64,7 +64,7 @@ namespace ConsoleUI
 
             foreach (var car in carService.GetCarDetails().Data)
             {
-                Console.WriteLine(car.BrandName + " : " + car.ColorName + " " + car.CarDescription + " - " + car.DailyPrice);
+                //Console.WriteLine(car.BrandName + " : " + car.ColorName + " " + car.CarDescription + " - " + car.DailyPrice);
             }
 
         }

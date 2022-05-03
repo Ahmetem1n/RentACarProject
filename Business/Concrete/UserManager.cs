@@ -4,6 +4,7 @@ using Business.Constants;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -61,6 +62,11 @@ namespace Business.Concrete
         {
             _userDal.Update(user);
             return new SuccessResult(Messages.Updated);
+        }
+
+        public IDataResult<List<UserDetailDto>> GetUserDetails()
+        {
+            return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetUserDetails(), Messages.Listed);
         }
     }
 }

@@ -8,9 +8,9 @@ namespace Entities.Concrete
     public class DrivingInformation : IEntity
     {
         public long DrivingId { get; set; }
-        public int CityId { get; set; }
         public string LicenceNumber { get; set; }
         public DateTime ExpiryDate { get; set; }
         public string BloodGroup { get; set; }
+        public string LicenceProvince { get; set; }
     }
 }

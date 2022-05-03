@@ -4,6 +4,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -40,6 +41,11 @@ namespace Business.Concrete
         public IDataResult<PhoneNumber> GetById(long phoneId)
         {
             return new SuccessDataResult<PhoneNumber>(_phoneNumberDal.Get(p => p.PhoneId == phoneId), Messages.Get);
+        }
+
+        public IDataResult<List<PhoneNumberDetailDto>> GetPhoneNumberDetails()
+        {
+            return new SuccessDataResult<List<PhoneNumberDetailDto>>(_phoneNumberDal.GetPhoneNumberDetails(), Messages.Listed);
         }
 
         public IResult Update(PhoneNumber phoneNumber)

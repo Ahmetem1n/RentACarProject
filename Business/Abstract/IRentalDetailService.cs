@@ -10,6 +10,7 @@ namespace Business.Abstract
     public interface IRentalDetailService
     {
         IDataResult<List<RentalDetail>> GetAll();
+        IDataResult<List<RentalDetailDto>> GetRentalDetails();
         IDataResult<RentalDetail> GetById(long rentalId);
         IResult Add(RentalDetail rentalDetail);
         IResult Update(RentalDetail rentalDetail);

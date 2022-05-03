@@ -30,6 +30,28 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getBranchDetails")]
+        public IActionResult GetBranchDetails()
+        {
+            var result = _branchService.GetBranchDetails();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpGet("getByBranchName")]
+        public IActionResult GetByBranchName(string branchName)
+        {
+            var result = _branchService.GetByBranchName(branchName);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("getById")]
         public IActionResult GetById(long branchId)
         {
@@ -39,7 +61,7 @@ namespace WebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest(result);
-        }   
+        }
 
         [HttpPost("add")]
         public IActionResult Add(Branch branch)

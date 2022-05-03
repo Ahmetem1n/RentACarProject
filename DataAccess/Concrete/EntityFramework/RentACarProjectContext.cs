@@ -34,7 +34,6 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<Fuel> Fuels { get; set; }
         public DbSet<Gear> Gears { get; set; }
         public DbSet<IdentityInformation> IdentityInformations { get; set; }
-        public DbSet<Model> Models { get; set; }
         public DbSet<PhoneNumber> PhoneNumbers { get; set; }
         public DbSet<RentalDetail> RentalDetails { get; set; }
         public DbSet<OperationClaim> OperationClaims { get; set; }

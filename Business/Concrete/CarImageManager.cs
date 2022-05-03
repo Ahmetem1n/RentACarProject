@@ -4,6 +4,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -41,6 +42,11 @@ namespace Business.Concrete
         public IDataResult<CarImage> GetById(long imageId)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.ImageId == imageId), Messages.Get);
+        }
+
+        public IDataResult<List<CarImageDetailDto>> GetCarImageDetails()
+        {
+            return new SuccessDataResult<List<CarImageDetailDto>>(_carImageDal.GetCarImageDetails(), Messages.Listed);
         }
 
         [SecuredOperation("admin,employee")]

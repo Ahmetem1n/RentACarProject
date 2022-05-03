@@ -11,10 +11,10 @@ namespace Business.ValidationRules.FluentValidation
 
         public DrivingInformationValidator()
         {
-            RuleFor(d => d.CityId).NotEmpty();
             RuleFor(d => d.LicenceNumber).NotEmpty();
             RuleFor(d => d.ExpiryDate).NotEmpty();
             RuleFor(d => d.BloodGroup).NotEmpty();
+            RuleFor(d => d.LicenceProvince).NotEmpty();
         }
     }
 }

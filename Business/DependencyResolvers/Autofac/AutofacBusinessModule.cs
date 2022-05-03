@@ -65,9 +65,6 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<IdentityInformationManager>().As<IIdentityInformationService>();
             builder.RegisterType<EfIdentityInformationDal>().As<IIdentityInformationDal>();
 
-            builder.RegisterType<ModelManager>().As<IModelService>();
-            builder.RegisterType<EfModelDal>().As<IModelDal>();
-
             builder.RegisterType<PhoneNumberManager>().As<IPhoneNumberService>();
             builder.RegisterType<EfPhoneNumberDal>().As<IPhoneNumberDal>();
 

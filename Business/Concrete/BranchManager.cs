@@ -4,6 +4,7 @@ using Business.Constants;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -37,6 +38,16 @@ namespace Business.Concrete
         public IDataResult<List<Branch>> GetAll()
         {
             return new SuccessDataResult<List<Branch>>(_branchDal.GetAll(), Messages.Listed);
+        }
+
+        public IDataResult<List<BranchDetailDto>> GetBranchDetails()
+        {
+            return new SuccessDataResult<List<BranchDetailDto>>(_branchDal.GetBranchDetails(), Messages.Listed);
+        }
+
+        public IDataResult<Branch> GetByBranchName(string branchName)
+        {
+            return new SuccessDataResult<Branch>(_branchDal.GetByBranchName(branchName), Messages.Get);
         }
 
         public IDataResult<Branch> GetById(long branchId)

@@ -33,7 +33,7 @@ namespace Business.Concrete
                 Photo = userForRegisterDto.Photo,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
-                Status = true
+                Status = "Aktif"
             };
             _userService.Add(user);
             return new SuccessDataResult<User>(user, Messages.UserRegistered);

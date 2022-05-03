@@ -18,7 +18,6 @@ namespace Business.ValidationRules.FluentValidation
             RuleFor(c => c.FuelId).NotEmpty();
             RuleFor(c => c.ClassId).NotEmpty();
             RuleFor(c => c.CaseId).NotEmpty();
-            RuleFor(c => c.ModelId).NotEmpty();
             RuleFor(c => c.CarPlate).NotEmpty();
             RuleFor(c => c.CarStar).NotEmpty();
             RuleFor(c => c.ModelYear).NotEmpty();

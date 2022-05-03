@@ -10,6 +10,7 @@ namespace Business.Abstract
     public interface ICarImageService
     {
         IDataResult<List<CarImage>> GetAll();
+        IDataResult<List<CarImageDetailDto>> GetCarImageDetails();
         IDataResult<CarImage> GetById(long imageId);
         IResult Add(CarImage carImage);
         IResult Update(CarImage carImage);
