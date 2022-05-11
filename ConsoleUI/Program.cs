@@ -12,7 +12,7 @@ namespace ConsoleUI
         {
             BrandManager brandManager = new BrandManager(new EfBrandDal());
             IColorService colorService = new ColorManager(new EfColorDal());
-            ICarService carService = new CarManager(new EfCarDal());
+            //ICarService carService = new CarManager(new EfCarDal());
             IFuelService fuelService = new FuelManager(new EfFuelDal());
 
             //CarTest(brandService, colorService, carService);

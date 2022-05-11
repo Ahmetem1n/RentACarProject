@@ -19,14 +19,14 @@ namespace Business.Concrete
             _colorDal = colorDal;
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Add(Color color)
         {
             _colorDal.Add(color);
             return new SuccessResult(Messages.Added);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
@@ -43,7 +43,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Color>(_colorDal.Get(c => c.ColorId == colorId), Messages.Get);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Update(Color color)
         {
             _colorDal.Update(color);

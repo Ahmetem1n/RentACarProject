@@ -30,6 +30,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getByUsable")]
+        public IActionResult GetByUsable(DateTime rentDate, DateTime returnDate, long branchId)
+        {
+            var result = _carService.GetByUsable(rentDate, returnDate, branchId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
 
         [HttpGet("getCarDetails")]
         public IActionResult GetCarDetails()

@@ -19,14 +19,14 @@ namespace Business.Concrete
             _classDal = classDal;
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Add(Class classes)
         {
             _classDal.Add(classes);
             return new SuccessResult(Messages.Added);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Delete(Class classes)
         {
             _classDal.Delete(classes);
@@ -43,7 +43,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Class>(_classDal.Get(c => c.ClassId == classId), Messages.Get);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Update(Class classes)
         {
             _classDal.Update(classes);

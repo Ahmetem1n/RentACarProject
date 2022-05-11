@@ -19,14 +19,14 @@ namespace Business.Concrete
             _caseTypeDal = caseTypeDal;
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Add(CaseType caseType)
         {
             _caseTypeDal.Add(caseType);
             return new SuccessResult(Messages.Added);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Delete(CaseType caseType)
         {
             _caseTypeDal.Delete(caseType);
@@ -43,7 +43,7 @@ namespace Business.Concrete
             return new SuccessDataResult<CaseType>(_caseTypeDal.Get(c => c.CaseId == caseId), Messages.Get);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Update(CaseType caseType)
         {
             _caseTypeDal.Update(caseType);

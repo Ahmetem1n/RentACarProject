@@ -20,14 +20,14 @@ namespace Business.Concrete
             _carImageDal = carImageDal;
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Add(CarImage carImage)
         {
             _carImageDal.Add(carImage);
             return new SuccessResult(Messages.Added);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Delete(CarImage carImage)
         {
             _carImageDal.Delete(carImage);
@@ -49,7 +49,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImageDetailDto>>(_carImageDal.GetCarImageDetails(), Messages.Listed);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Update(CarImage carImage)
         {
             _carImageDal.Update(carImage);

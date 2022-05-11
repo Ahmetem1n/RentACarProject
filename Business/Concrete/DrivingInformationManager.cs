@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("admin,employee")]
+    [SecuredOperation("Yönetici,Çalışan")]
     public class DrivingInformationManager : IDrivingInformationService
     {
         IDrivingInformationDal _drivingInformationDal;

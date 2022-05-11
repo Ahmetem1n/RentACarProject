@@ -19,14 +19,14 @@ namespace Business.Concrete
             _gearDal = gearDal;
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Add(Gear gear)
         {
             _gearDal.Add(gear);
             return new SuccessResult(Messages.Added);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Delete(Gear gear)
         {
             _gearDal.Delete(gear);
@@ -43,7 +43,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Gear>(_gearDal.Get(g => g.GearId == gearId), Messages.Get);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Update(Gear gear)
         {
             _gearDal.Update(gear);

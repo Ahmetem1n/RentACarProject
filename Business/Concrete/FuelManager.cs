@@ -19,14 +19,14 @@ namespace Business.Concrete
             _fuelDal = fuelDal;
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Add(Fuel fuel)
         {
             _fuelDal.Add(fuel);
             return new SuccessResult(Messages.Added);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Delete(Fuel fuel)
         {
             _fuelDal.Delete(fuel);
@@ -43,7 +43,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Fuel>(_fuelDal.Get(f => f.FuelId == fuelId), Messages.Get);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Update(Fuel fuel)
         {
             _fuelDal.Update(fuel);

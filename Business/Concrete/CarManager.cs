@@ -14,12 +14,14 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
+        IRentalDetailService _rentalDetailService;
 
-        public CarManager(ICarDal carDal)
+        public CarManager(ICarDal carDal, IRentalDetailService rentalDetailService)
         {
             _carDal = carDal;
+            _rentalDetailService = rentalDetailService;
         }
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Add(Car car)
         {
             if (car.DailyPrice > 0 && car.Description.Length >= 2)
@@ -35,7 +37,7 @@ namespace Business.Concrete
 
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
@@ -50,6 +52,33 @@ namespace Business.Concrete
         public IDataResult<Car> GetById(long carId)
         {
             return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId), Messages.Get);
+        }
+
+        public IDataResult<List<CarDetailDto>> GetByUsable(DateTime rentDate, DateTime returnDate,long branchId)
+        {
+            List<CarDetailDto> deneme = _carDal.GetByUsable(rentDate, returnDate, branchId);
+            List<RentalDetail> rentalDetailList = _rentalDetailService.GetAll().Data;
+            List<RentalDetail> silinecekler = new List<RentalDetail>();
+            for (int i = 0; i < rentalDetailList.Count; i++)
+            {
+                if ((rentDate >= rentalDetailList[i].RentDate && rentDate <= rentalDetailList[i].ReturnDate )||
+                    (returnDate >= rentalDetailList[i].RentDate && returnDate <= rentalDetailList[i].ReturnDate))
+                {
+                    silinecekler.Add(rentalDetailList[i]);
+                }
+            }
+            for (int i = 0; i < deneme.Count; i++)
+            {
+                for (int j = 0; j < silinecekler.Count; j++)
+                {
+                    if (deneme[i].CarId == silinecekler[j].CarId)
+                    {
+                        deneme.RemoveAt(i);
+                    }
+                }
+            }
+
+            return new SuccessDataResult<List<CarDetailDto>>(deneme, Messages.Get);
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
@@ -67,7 +96,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId), Messages.Listed);
         }
 
-        [SecuredOperation("admin,employee")]
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Update(Car car)
         {
             _carDal.Update(car);
