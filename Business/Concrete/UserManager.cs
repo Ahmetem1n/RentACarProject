@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    //[SecuredOperation("admin,employee")]
+    //[SecuredOperation("Yönetici,Çalışan")]
     public class UserManager : IUserService
     {
         IUserDal _userDal;
@@ -53,9 +53,9 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(_userDal.Get(u => u.Email == email));
         }
 
-        public IDataResult<OperationClaim> GetClaim(User user)
+        public List<OperationClaim> GetClaims(User user)
         {
-            return new SuccessDataResult<OperationClaim>(_userDal.GetClaim(user));
+            return _userDal.GetClaims(user);
         }
 
         public IResult Update(User user)
@@ -66,7 +66,37 @@ namespace Business.Concrete
 
         public IDataResult<List<UserDetailDto>> GetUserDetails()
         {
-            return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetUserDetails(), Messages.Listed);
+            var users = _userDal.GetAll();
+            List<UserDetailDto> userDetailDto = new List<UserDetailDto>();
+
+            foreach (var user in users)
+            {
+                userDetailDto.Add(new UserDetailDto
+                {
+                    UserId = user.UserId,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email,
+                    NationalityId = user.NationalityId,
+                    BirthYear = user.BirthYear,
+                    Photo = user.Photo,
+                    Status = user.Status,
+                    ClaimName = GetByUserClaim(user).ClaimName
+                });
+            }
+
+            return new SuccessDataResult<List<UserDetailDto>>(userDetailDto, Messages.Listed);
+        }
+
+        public OperationClaim GetByUserClaim(User user)
+        {
+            var result = _userDal.GetByUserClaim(user);
+            return result != null ? result : new OperationClaim { ClaimName = "Yetki Yok" };
+        }
+
+        public IDataResult<List<UserDetailDto>> GetByCustomers()
+        {
+            return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetByCustomers());
         }
     }
 }

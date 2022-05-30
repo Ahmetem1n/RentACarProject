@@ -36,6 +36,10 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<IdentityInformation>>(_identityInformationDal.GetAll(), Messages.Listed);
         }
+        public IDataResult<IdentityInformation> GetByUserId(long userId)
+        {
+            return new SuccessDataResult<IdentityInformation>(_identityInformationDal.Get(i => i.UserId == userId), Messages.Get);
+        }
 
         public IDataResult<IdentityInformation> GetById(long identityId)
         {

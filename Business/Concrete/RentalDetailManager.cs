@@ -11,7 +11,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("Yönetici,Çalışan")]
+    //[SecuredOperation("Yönetici,Çalışan")]
     public class RentalDetailManager : IRentalDetailService
     {
         IRentalDetailDal _rentalDetailDal;
@@ -46,6 +46,11 @@ namespace Business.Concrete
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDetailDal.GetRentalDetails(), Messages.Listed);
+        }
+
+        public IDataResult<List<RentalDetailDto>> GetRentalDetailsByUserId(long userId)
+        {
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDetailDal.GetRentalDetails(r=>r.UserId==userId), Messages.Listed);
         }
 
         public IResult Update(RentalDetail rentalDetail)

@@ -11,6 +11,7 @@ namespace Business.Abstract
     {
         IDataResult<List<PhoneNumber>> GetAll();
         IDataResult<List<PhoneNumberDetailDto>> GetPhoneNumberDetails();
+        IDataResult<List<PhoneNumber>> GetByUserPhoneNumbers(long userId);
         IDataResult<PhoneNumber> GetById(long phoneId);
         IResult Add(PhoneNumber phoneNumber);
         IResult Update(PhoneNumber phoneNumber);

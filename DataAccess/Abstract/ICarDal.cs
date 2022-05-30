@@ -9,7 +9,7 @@ namespace DataAccess.Abstract
 {
     public interface ICarDal : IEntityRepository<Car>
     {
-        List<CarDetailDto> GetByUsable(DateTime rentDate,DateTime returnDate, long branchId);
+        List<CarDetailDto> GetByUsable(long branchId);
         List<CarDetailDto> GetCarDetails();
     }
 }

@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCarDal : EfEntityRepositoryBase<Car, RentACarProjectContext>, ICarDal
     {
-        public List<CarDetailDto> GetByUsable(DateTime rentDate, DateTime returnDate, long branchId)
+        public List<CarDetailDto> GetByUsable(long branchId)
         {
             using (RentACarProjectContext context = new RentACarProjectContext())
             {

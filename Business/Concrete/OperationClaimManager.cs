@@ -10,7 +10,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("Yönetici")]
+    // [SecuredOperation("Yönetici")]
     public class OperationClaimManager : IOperationClaimService
     {
         IOperationClaimDal _operationClaimDal;

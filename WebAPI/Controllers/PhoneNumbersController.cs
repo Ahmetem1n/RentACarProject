@@ -41,6 +41,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getByUserPhoneNumbers")]
+        public IActionResult GetByUserPhoneNumbers(long userId)
+        {
+            var result = _phoneNumberService.GetByUserPhoneNumbers(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("getById")]
         public IActionResult GetById(long phoneId)
         {

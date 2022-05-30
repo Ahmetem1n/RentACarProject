@@ -41,6 +41,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getByCustomers")]
+        public IActionResult GetByCustomers()
+        {
+            var result = _userService.GetByCustomers();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("getByRoles")]
         public IActionResult GetByRoles(string claimName)
         {

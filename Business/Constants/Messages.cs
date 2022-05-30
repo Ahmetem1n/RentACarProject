@@ -24,10 +24,10 @@ namespace Business.Constants
         public static string c="1";
         public static string AuthorizationDenied="Yetki Yok";
         public static string UserNotFound="Kullanıcı Bulunamadı";
-        public static string UserRegistered="1";
-        public static string PasswordError="1";
-        public static string SuccessfulLogin="1";
-        public static string UserAlreadyExists="1";
-        public static string AccessTokenCreated="1";
+        public static string UserRegistered="userRegistered";
+        public static string PasswordError= "PasswordError";
+        public static string SuccessfulLogin= "SuccessfulLogin";
+        public static string UserAlreadyExists= "UserAlreadyExists";
+        public static string AccessTokenCreated= "AccessTokenCreated";
     }
 }

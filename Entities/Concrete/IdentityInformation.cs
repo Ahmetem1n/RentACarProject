@@ -8,6 +8,7 @@ namespace Entities.Concrete
     public class IdentityInformation : IEntity
     {
         public long IdentityId { get; set; }
+        public long UserId { get; set; }
         public string SerialNumber { get; set; }
         public string FatherName { get; set; }
         public string MotherName { get; set; }

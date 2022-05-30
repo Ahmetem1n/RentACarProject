@@ -8,6 +8,7 @@ namespace Entities.Concrete
     public class DrivingInformation : IEntity
     {
         public long DrivingId { get; set; }
+        public long UserId { get; set; }
         public string LicenceNumber { get; set; }
         public DateTime ExpiryDate { get; set; }
         public string BloodGroup { get; set; }

@@ -43,6 +43,11 @@ namespace Business.Concrete
             return new SuccessDataResult<PhoneNumber>(_phoneNumberDal.Get(p => p.PhoneId == phoneId), Messages.Get);
         }
 
+        public IDataResult<List<PhoneNumber>> GetByUserPhoneNumbers(long userId)
+        {
+            return new SuccessDataResult<List<PhoneNumber>>(_phoneNumberDal.GetAll(p => p.UserId == userId));
+        }
+
         public IDataResult<List<PhoneNumberDetailDto>> GetPhoneNumberDetails()
         {
             return new SuccessDataResult<List<PhoneNumberDetailDto>>(_phoneNumberDal.GetPhoneNumberDetails(), Messages.Listed);

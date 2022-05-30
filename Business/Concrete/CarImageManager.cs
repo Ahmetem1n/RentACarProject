@@ -44,6 +44,11 @@ namespace Business.Concrete
             return new SuccessDataResult<CarImage>(_carImageDal.Get(c => c.ImageId == imageId), Messages.Get);
         }
 
+        public IDataResult<List<CarImage>> GetByCarId(long carId)
+        {
+            return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(c=>c.CarId==carId), Messages.Get);
+        }
+
         public IDataResult<List<CarImageDetailDto>> GetCarImageDetails()
         {
             return new SuccessDataResult<List<CarImageDetailDto>>(_carImageDal.GetCarImageDetails(), Messages.Listed);

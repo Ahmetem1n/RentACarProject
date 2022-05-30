@@ -30,6 +30,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getByUserId")]
+        public IActionResult GetByUserId(long userId)
+        {
+            var result = _identityInformationService.GetByUserId(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpGet("getById")]
         public IActionResult GetById(long identityId)
         {

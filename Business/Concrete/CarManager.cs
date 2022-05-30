@@ -54,31 +54,42 @@ namespace Business.Concrete
             return new SuccessDataResult<Car>(_carDal.Get(c => c.CarId == carId), Messages.Get);
         }
 
-        public IDataResult<List<CarDetailDto>> GetByUsable(DateTime rentDate, DateTime returnDate,long branchId)
+        public IDataResult<List<CarDetailDto>> GetByUsable(DateTime rentDate, DateTime returnDate, long branchId)
         {
-            List<CarDetailDto> deneme = _carDal.GetByUsable(rentDate, returnDate, branchId);
+            //if (rentDate.DayOfYear < DateTime.Now.DayOfYear || returnDate.DayOfYear < DateTime.Now.DayOfYear ||
+            //    rentDate.DayOfYear > DateTime.Now.DayOfYear + 30 || returnDate.DayOfYear > DateTime.Now.DayOfYear + 30)
+            //{
+            //    return new ErrorDataResult<List<CarDetailDto>>("Geçmiş Tarih Seçtiniz");
+            //}
+
+            List<CarDetailDto> kullanilabilirArabalar = _carDal.GetByUsable(branchId);
             List<RentalDetail> rentalDetailList = _rentalDetailService.GetAll().Data;
             List<RentalDetail> silinecekler = new List<RentalDetail>();
             for (int i = 0; i < rentalDetailList.Count; i++)
             {
-                if ((rentDate >= rentalDetailList[i].RentDate && rentDate <= rentalDetailList[i].ReturnDate )||
+                if ((rentDate >= rentalDetailList[i].RentDate && rentDate <= rentalDetailList[i].ReturnDate) ||
                     (returnDate >= rentalDetailList[i].RentDate && returnDate <= rentalDetailList[i].ReturnDate))
                 {
                     silinecekler.Add(rentalDetailList[i]);
                 }
             }
-            for (int i = 0; i < deneme.Count; i++)
+            for (int i = 0; i < kullanilabilirArabalar.Count; i++)
             {
                 for (int j = 0; j < silinecekler.Count; j++)
                 {
-                    if (deneme[i].CarId == silinecekler[j].CarId)
+                    if (kullanilabilirArabalar[i].CarId == silinecekler[j].CarId)
                     {
-                        deneme.RemoveAt(i);
+                        kullanilabilirArabalar.RemoveAt(i);
+                        if (kullanilabilirArabalar.Count == 0)
+                        {
+                            break;
+                        }
                     }
                 }
+
             }
 
-            return new SuccessDataResult<List<CarDetailDto>>(deneme, Messages.Get);
+            return new SuccessDataResult<List<CarDetailDto>>(kullanilabilirArabalar, Messages.Get);
         }
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()

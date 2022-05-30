@@ -11,6 +11,7 @@ namespace Business.Abstract
     {
         IDataResult<List<IdentityInformation>> GetAll();
         IDataResult<IdentityInformation> GetById(long identityId);
+        IDataResult<IdentityInformation> GetByUserId(long userId);
         IResult Add(IdentityInformation identityInformation);
         IResult Update(IdentityInformation identityInformation);
         IResult Delete(IdentityInformation identityInformation);

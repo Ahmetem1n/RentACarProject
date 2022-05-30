@@ -11,11 +11,15 @@ namespace Business.Concrete
     public class AuthManager : IAuthService
     {
         private IUserService _userService;
+        private IOperationClaimService _operationClaimService;
+        private IUserOperationClaimService _userOperationClaimService;
         private ITokenHelper _tokenHelper;
 
-        public AuthManager(IUserService userService, ITokenHelper tokenHelper)
+        public AuthManager(IUserService userService, IOperationClaimService operationClaimService, IUserOperationClaimService userOperationClaimService, ITokenHelper tokenHelper)
         {
             _userService = userService;
+            _operationClaimService = operationClaimService;
+            _userOperationClaimService = userOperationClaimService;
             _tokenHelper = tokenHelper;
         }
 
@@ -36,6 +40,7 @@ namespace Business.Concrete
                 Status = "Aktif"
             };
             _userService.Add(user);
+            //_userOperationClaimService.Add(new UserOperationClaim { ClaimId = _operationClaimService.GetAll().Data.Find(o => o.ClaimName.Equals("Müşteri")).ClaimId, UserId = _userService.GetAll().Data.Find(u => u.Email == user.Email).UserId });
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
 
@@ -66,9 +71,9 @@ namespace Business.Concrete
 
         public IDataResult<AccessToken> CreateAccessToken(User user)
         {
-            var claims = _userService.GetClaim(user).Data;
+            var claims = _userService.GetClaims(user);
             var accessToken = _tokenHelper.CreateToken(user, claims);
-            return new SuccessDataResult<AccessToken>(accessToken, Messages.AccessTokenCreated);
+            return new SuccessDataResult<AccessToken>(accessToken, "Token oluşturuldu");
         }
     }
 }

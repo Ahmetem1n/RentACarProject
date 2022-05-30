@@ -11,6 +11,32 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfUserDal : EfEntityRepositoryBase<User, RentACarProjectContext>, IUserDal
     {
+        public List<UserDetailDto> GetByCustomers()
+        {
+            using (var context = new RentACarProjectContext())
+            {
+                var result = from u in context.Users
+                             join uo in context.UserOperationClaims
+                                 on u.UserId equals uo.UserId
+                             join o in context.OperationClaims
+                                on uo.ClaimId equals o.ClaimId
+                             where o.ClaimName == "Müşteri"
+                             select new UserDetailDto
+                             {
+                                 UserId = u.UserId,
+                                 FirstName = u.FirstName,
+                                 LastName = u.LastName,
+                                 NationalityId = u.NationalityId,
+                                 Email = u.Email,
+                                 Photo = u.Photo,
+                                 Status = u.Status,
+                                 BirthYear = u.BirthYear,
+                                 ClaimName = "Müşteri"
+                             };
+                return result.ToList();
+            }
+        }
+
         public List<User> GetByRoles(string claimName)
         {
             using (var context = new RentACarProjectContext())
@@ -26,31 +52,30 @@ namespace DataAccess.Concrete.EntityFramework
             }
         }
 
-        public OperationClaim GetClaim(User user)
+        public OperationClaim GetByUserClaim(User user)
+        {
+            using (var context = new RentACarProjectContext())
+            {
+                var result = from o in context.OperationClaims
+                             join uo in context.UserOperationClaims
+                                 on o.ClaimId equals uo.ClaimId
+                             where uo.UserId == user.UserId
+                             select new OperationClaim { ClaimId = o.ClaimId, ClaimName = o.ClaimName };
+                return result.FirstOrDefault();
+            }
+        }
+
+        public List<OperationClaim> GetClaims(User user)
         {
             using (var context = new RentACarProjectContext())
             {
                 var result = from operationClaim in context.OperationClaims
                              join userOperationClaim in context.UserOperationClaims
-                                 on operationClaim.ClaimId equals userOperationClaim.DetailId
+                                 on operationClaim.ClaimId equals userOperationClaim.ClaimId
                              where userOperationClaim.UserId == user.UserId
                              select new OperationClaim { ClaimId = operationClaim.ClaimId, ClaimName = operationClaim.ClaimName };
-                return result.FirstOrDefault();
-
-            }
-        }
-
-        public List<UserDetailDto> GetUserDetails()
-        {
-            using (RentACarProjectContext context = new RentACarProjectContext())
-            {
-                var result = from u in context.Users
-                             join us in context.UserOperationClaims
-                             on u.UserId equals us.UserId
-                             join o in context.OperationClaims
-                             on us.ClaimId equals o.ClaimId
-                             select new UserDetailDto { UserId = u.UserId, BirthYear = u.BirthYear, Email = u.Email, FirstName = u.FirstName, LastName = u.LastName, NationalityId = u.NationalityId, Photo = u.Photo, Status = u.Status, ClaimName = o.ClaimName };
                 return result.ToList();
+
             }
         }
     }

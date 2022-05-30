@@ -11,12 +11,14 @@ namespace Business.Abstract
     {
         IDataResult<List<User>> GetAll();
         IDataResult<List<UserDetailDto>> GetUserDetails();
+        IDataResult<List<UserDetailDto>> GetByCustomers();
         IDataResult<List<User>> GetByRoles(string claimName);
         IDataResult<User> GetById(long userId);
         IResult Add(User user);
         IResult Update(User user);
         IResult Delete(User user);
-        IDataResult<OperationClaim> GetClaim(User user);
+        List<OperationClaim> GetClaims(User user);
+        OperationClaim GetByUserClaim(User user);
         IDataResult<User> GetByMail(string email);
     }
 }
