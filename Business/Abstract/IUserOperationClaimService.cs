@@ -10,6 +10,7 @@ namespace Business.Abstract
     {
         IDataResult<List<UserOperationClaim>> GetAll();
         IDataResult<UserOperationClaim> GetById(long detailId);
+        IDataResult<UserOperationClaim> GetByUserId(long userId);
         IResult Add(UserOperationClaim userOperationClaim);
         IResult Update(UserOperationClaim userOperationClaim);
         IResult Delete(UserOperationClaim userOperationClaim);

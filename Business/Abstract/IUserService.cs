@@ -14,6 +14,7 @@ namespace Business.Abstract
         IDataResult<List<UserDetailDto>> GetByCustomers();
         IDataResult<List<User>> GetByRoles(string claimName);
         IDataResult<User> GetById(long userId);
+        IDataResult<UserDetailDto> GetByUserId(long userId);
         IResult Add(User user);
         IResult Update(User user);
         IResult Delete(User user);

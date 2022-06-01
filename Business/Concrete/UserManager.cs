@@ -15,10 +15,12 @@ namespace Business.Concrete
     public class UserManager : IUserService
     {
         IUserDal _userDal;
+        IUserOperationClaimService _userOperationClaimService;
 
-        public UserManager(IUserDal userDal)
+        public UserManager(IUserDal userDal, IUserOperationClaimService userOperationClaimService)
         {
             _userDal = userDal;
+            _userOperationClaimService = userOperationClaimService;
         }
 
         public IResult Add(User user)
@@ -29,6 +31,11 @@ namespace Business.Concrete
 
         public IResult Delete(User user)
         {
+            var userOperationClaim = _userOperationClaimService.GetByUserId(user.UserId).Data;
+            if (userOperationClaim != null)
+            {
+                _userOperationClaimService.Delete(userOperationClaim);
+            }
             _userDal.Delete(user);
             return new SuccessResult(Messages.Deleted);
         }
@@ -81,7 +88,10 @@ namespace Business.Concrete
                     BirthYear = user.BirthYear,
                     Photo = user.Photo,
                     Status = user.Status,
-                    ClaimName = GetByUserClaim(user).ClaimName
+                    PasswordHash = user.PasswordHash,
+                    PasswordSalt = user.PasswordSalt,
+                    ClaimName = GetByUserClaim(user).ClaimName,
+                    ClaimId = GetByUserClaim(user).ClaimId
                 });
             }
 
@@ -91,12 +101,17 @@ namespace Business.Concrete
         public OperationClaim GetByUserClaim(User user)
         {
             var result = _userDal.GetByUserClaim(user);
-            return result != null ? result : new OperationClaim { ClaimName = "Yetki Yok" };
+            return result != null ? result : new OperationClaim { ClaimId = 0, ClaimName = "Yetki Yok" };
         }
 
         public IDataResult<List<UserDetailDto>> GetByCustomers()
         {
             return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetByCustomers());
+        }
+
+        public IDataResult<UserDetailDto> GetByUserId(long userId)
+        {
+            return new SuccessDataResult<UserDetailDto>(GetUserDetails().Data.Find(u => u.UserId == userId));
         }
     }
 }

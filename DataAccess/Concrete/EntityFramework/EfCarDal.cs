@@ -32,7 +32,7 @@ namespace DataAccess.Concrete.EntityFramework
                              on c.ClassId equals cl.ClassId
                              join ca in context.CaseTypes
                              on c.CaseId equals ca.CaseId
-                             where c.CarUsable == "Aktif" && c.BranchId == branchId
+                             where c.CarUsable == "Kullanılabilir" && c.BranchId == branchId
                              select new CarDetailDto
                              {
                                  CarId = c.CarId,

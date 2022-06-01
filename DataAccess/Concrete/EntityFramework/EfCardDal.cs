@@ -13,11 +13,11 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfCardDal : EfEntityRepositoryBase<Card, RentACarProjectContext>, ICardDal
     {
-        public List<CardDetailDto> GetCardDetails()
+        public List<CardDetailDto> GetCardDetails(Expression<Func<Card, bool>> filter = null)
         {
             using (RentACarProjectContext context = new RentACarProjectContext())
             {
-                var result = from c in context.Cards
+                var result = from c in filter==null? context.Cards : context.Cards.Where(filter)
                              join u in context.Users
                              on c.UserId equals u.UserId
                              select new CardDetailDto { CardId = c.CardId, UserId=u.UserId, NationalityId = u.NationalityId, FullName = c.FullName, CardNo = c.CardNo, ExpiryDate = c.ExpiryDate, Cvv = c.Cvv };

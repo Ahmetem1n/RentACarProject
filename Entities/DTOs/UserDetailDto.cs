@@ -15,6 +15,9 @@ namespace Entities.DTOs
         public int BirthYear { get; set; }
         public string Photo { get; set; }
         public string Status { get; set; }
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
+        public long ClaimId { get; set; }
         public string ClaimName { get; set; }
     }
 }

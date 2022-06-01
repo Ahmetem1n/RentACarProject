@@ -46,6 +46,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CardDetailDto>>(_cardDal.GetCardDetails(), Messages.Get);
         }
 
+        public IDataResult<List<CardDetailDto>> GetCardDetailsByUserId(long userId)
+        {
+            return new SuccessDataResult<List<CardDetailDto>>(_cardDal.GetCardDetails(c=>c.UserId==userId), Messages.Get);
+        }
+
         public IResult Update(Card card)
         {
             _cardDal.Update(card);

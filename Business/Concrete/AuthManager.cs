@@ -40,7 +40,7 @@ namespace Business.Concrete
                 Status = "Aktif"
             };
             _userService.Add(user);
-            //_userOperationClaimService.Add(new UserOperationClaim { ClaimId = _operationClaimService.GetAll().Data.Find(o => o.ClaimName.Equals("Müşteri")).ClaimId, UserId = _userService.GetAll().Data.Find(u => u.Email == user.Email).UserId });
+            _userOperationClaimService.Add(new UserOperationClaim { ClaimId = _operationClaimService.GetAll().Data.Find(o => o.ClaimName.Equals("Müşteri")).ClaimId, UserId = _userService.GetAll().Data.Find(u => u.Email == user.Email).UserId });
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
 

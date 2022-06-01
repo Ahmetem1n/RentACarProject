@@ -31,6 +31,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  Photo = u.Photo,
                                  Status = u.Status,
                                  BirthYear = u.BirthYear,
+                                 PasswordHash=u.PasswordHash,
+                                 PasswordSalt=u.PasswordSalt,
                                  ClaimName = "Müşteri"
                              };
                 return result.ToList();

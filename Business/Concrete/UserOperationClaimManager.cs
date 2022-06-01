@@ -42,6 +42,11 @@ namespace Business.Concrete
             return new SuccessDataResult<UserOperationClaim>(_userOperationClaimDal.Get(u => u.DetailId == detailId), Messages.Get);
         }
 
+        public IDataResult<UserOperationClaim> GetByUserId(long userId)
+        {
+            return new SuccessDataResult<UserOperationClaim>(_userOperationClaimDal.Get(u => u.UserId == userId), Messages.Get);
+        }
+
         public IResult Update(UserOperationClaim userOperationClaim)
         {
             _userOperationClaimDal.Update(userOperationClaim);

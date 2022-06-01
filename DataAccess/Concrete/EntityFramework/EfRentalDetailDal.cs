@@ -17,12 +17,26 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (RentACarProjectContext context = new RentACarProjectContext())
             {
-                var result = from r in filter == null ? context.RentalDetails: context.RentalDetails.Where(filter)
+                var result = from r in filter == null ? context.RentalDetails : context.RentalDetails.Where(filter)
                              join u in context.Users
                              on r.UserId equals u.UserId
                              join c in context.Cars
                              on r.CarId equals c.CarId
-                             select new RentalDetailDto { RentalId = r.RentalId, UserId = u.UserId, CarId = c.CarId, CarPlate = c.CarPlate, FirstMileage = r.FirstMileage, LastMileage = r.LastMileage, NationalityId = u.NationalityId, RentDate = r.RentDate, ReturnDate = r.ReturnDate };
+                             join b in context.Branchs
+                             on r.BranchId equals b.BranchId
+                             select new RentalDetailDto
+                             {
+                                 RentalId = r.RentalId,
+                                 UserId = u.UserId,
+                                 CarId = c.CarId,
+                                 BranchId = b.BranchId,
+                                 CarPlate = c.CarPlate,
+                                 BranchName = b.BranchName,
+                                 NationalityId = u.NationalityId,
+                                 RentDate = r.RentDate,
+                                 ReturnDate = r.ReturnDate,
+                                 RentalPrice = r.RentalPrice,
+                             };
                 return result.ToList();
             }
         }

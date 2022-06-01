@@ -13,10 +13,10 @@ namespace Business.ValidationRules.FluentValidation
         {
             RuleFor(r => r.UserId).NotEmpty();
             RuleFor(r => r.CarId).NotEmpty();
+            RuleFor(r => r.BranchId).NotEmpty();
             RuleFor(r => r.RentDate).NotEmpty();
             RuleFor(r => r.ReturnDate).NotEmpty();
-            RuleFor(r => r.FirstMileage).NotEmpty();
-            RuleFor(r => r.LastMileage).NotEmpty();
+            RuleFor(r => r.RentalPrice).NotEmpty();
         }
     }
 }
