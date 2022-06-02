@@ -7,6 +7,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -35,7 +36,7 @@ namespace Business.Concrete
 
         public IDataResult<List<PhoneNumber>> GetAll()
         {
-            return new SuccessDataResult<List<PhoneNumber>>(_phoneNumberDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<List<PhoneNumber>>(_phoneNumberDal.GetAll().OrderBy(p => p.PhoneNo).ToList(), Messages.Listed);
         }
 
         public IDataResult<PhoneNumber> GetById(long phoneId)
@@ -45,12 +46,12 @@ namespace Business.Concrete
 
         public IDataResult<List<PhoneNumber>> GetByUserPhoneNumbers(long userId)
         {
-            return new SuccessDataResult<List<PhoneNumber>>(_phoneNumberDal.GetAll(p => p.UserId == userId));
+            return new SuccessDataResult<List<PhoneNumber>>(_phoneNumberDal.GetAll(p => p.UserId == userId).OrderBy(p => p.PhoneNo).ToList());
         }
 
         public IDataResult<List<PhoneNumberDetailDto>> GetPhoneNumberDetails()
         {
-            return new SuccessDataResult<List<PhoneNumberDetailDto>>(_phoneNumberDal.GetPhoneNumberDetails(), Messages.Listed);
+            return new SuccessDataResult<List<PhoneNumberDetailDto>>(_phoneNumberDal.GetPhoneNumberDetails().OrderBy(p => p.NationalityId).ToList(), Messages.Listed);
         }
 
         public IResult Update(PhoneNumber phoneNumber)

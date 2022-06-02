@@ -6,6 +6,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -35,7 +36,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Color>> GetAll()
         {
-            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll().OrderBy(c => c.ColorName).ToList(), Messages.Listed);
         }
 
         public IDataResult<Color> GetById(long colorId)

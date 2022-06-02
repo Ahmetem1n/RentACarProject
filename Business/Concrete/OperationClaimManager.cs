@@ -6,6 +6,7 @@ using Core.Utilities.Results;
 using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -34,7 +35,7 @@ namespace Business.Concrete
 
         public IDataResult<List<OperationClaim>> GetAll()
         {
-            return new SuccessDataResult<List<OperationClaim>>(_operationClaimDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<List<OperationClaim>>(_operationClaimDal.GetAll().OrderBy(o => o.ClaimName).ToList(), Messages.Listed);
         }
 
         public IDataResult<OperationClaim> GetById(long claimId)

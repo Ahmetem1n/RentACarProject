@@ -7,6 +7,7 @@ using DataAccess.Abstract;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -42,12 +43,12 @@ namespace Business.Concrete
 
         public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<List<User>>(_userDal.GetAll().OrderBy(u=>u.FirstName).ToList(), Messages.Listed);
         }
 
         public IDataResult<List<User>> GetByRoles(string claimName)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetByRoles(claimName), Messages.Listed);
+            return new SuccessDataResult<List<User>>(_userDal.GetByRoles(claimName).OrderBy(u => u.FirstName).ToList(), Messages.Listed);
         }
 
         public IDataResult<User> GetById(long userId)
@@ -62,11 +63,14 @@ namespace Business.Concrete
 
         public List<OperationClaim> GetClaims(User user)
         {
-            return _userDal.GetClaims(user);
+            return _userDal.GetClaims(user).OrderBy(o => o.ClaimName).ToList();
         }
 
         public IResult Update(User user)
         {
+            var result = _userDal.Get(u => u.UserId == user.UserId);
+            user.PasswordHash = result.PasswordHash;
+            user.PasswordSalt = result.PasswordSalt;
             _userDal.Update(user);
             return new SuccessResult(Messages.Updated);
         }
@@ -95,7 +99,7 @@ namespace Business.Concrete
                 });
             }
 
-            return new SuccessDataResult<List<UserDetailDto>>(userDetailDto, Messages.Listed);
+            return new SuccessDataResult<List<UserDetailDto>>(userDetailDto.OrderBy(u => u.FirstName).ToList(), Messages.Listed);
         }
 
         public OperationClaim GetByUserClaim(User user)
@@ -106,7 +110,7 @@ namespace Business.Concrete
 
         public IDataResult<List<UserDetailDto>> GetByCustomers()
         {
-            return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetByCustomers());
+            return new SuccessDataResult<List<UserDetailDto>>(_userDal.GetByCustomers().OrderBy(u => u.FirstName).ToList());
         }
 
         public IDataResult<UserDetailDto> GetByUserId(long userId)

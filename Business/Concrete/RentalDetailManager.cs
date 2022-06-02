@@ -7,6 +7,7 @@ using Entities.Concrete;
 using Entities.DTOs;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -35,7 +36,7 @@ namespace Business.Concrete
 
         public IDataResult<List<RentalDetail>> GetAll()
         {
-            return new SuccessDataResult<List<RentalDetail>>(_rentalDetailDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<List<RentalDetail>>(_rentalDetailDal.GetAll().OrderByDescending(r => r.RentDate).ToList(), Messages.Listed);
         }
 
         public IDataResult<RentalDetail> GetById(long rentalId)
@@ -45,12 +46,12 @@ namespace Business.Concrete
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetails()
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDetailDal.GetRentalDetails(), Messages.Listed);
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDetailDal.GetRentalDetails().OrderByDescending(r => r.RentDate).ToList(), Messages.Listed);
         }
 
         public IDataResult<List<RentalDetailDto>> GetRentalDetailsByUserId(long userId)
         {
-            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDetailDal.GetRentalDetails(r=>r.UserId==userId), Messages.Listed);
+            return new SuccessDataResult<List<RentalDetailDto>>(_rentalDetailDal.GetRentalDetails(r=>r.UserId==userId).OrderByDescending(r => r.RentDate).ToList(), Messages.Listed);
         }
 
         public IResult Update(RentalDetail rentalDetail)

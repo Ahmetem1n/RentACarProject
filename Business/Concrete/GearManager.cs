@@ -6,6 +6,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -35,7 +36,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Gear>> GetAll()
         {
-            return new SuccessDataResult<List<Gear>>(_gearDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<List<Gear>>(_gearDal.GetAll().OrderBy(g => g.GearName).ToList(), Messages.Listed);
         }
 
         public IDataResult<Gear> GetById(long gearId)

@@ -6,6 +6,7 @@ using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Business.Concrete
@@ -35,7 +36,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CaseType>> GetAll()
         {
-            return new SuccessDataResult<List<CaseType>>(_caseTypeDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<List<CaseType>>(_caseTypeDal.GetAll().OrderBy(c => c.CaseName).ToList(), Messages.Listed);
         }
 
         public IDataResult<CaseType> GetById(long caseId)

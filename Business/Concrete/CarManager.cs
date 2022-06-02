@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Business.Abstract;
 using Business.BusinessAspects.Autofac;
@@ -46,7 +47,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.Listed);
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll().OrderByDescending(c => c.ModelYear).ToList(), Messages.Listed);
         }
 
         public IDataResult<Car> GetById(long carId)
@@ -94,7 +95,7 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.Listed);
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails().OrderBy(c => c.BrandName).ToList(), Messages.Listed);
         }
 
         public IDataResult<List<Car>> GetCarsByBrandId(long brandId)
