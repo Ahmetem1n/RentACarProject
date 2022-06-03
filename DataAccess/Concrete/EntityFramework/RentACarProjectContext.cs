@@ -18,7 +18,6 @@ namespace DataAccess.Concrete.EntityFramework
             optionsBuilder.UseNpgsql(@"Host=localhost;Database=RentACar;Username=postgres;Password=12345");
         }
 
-        public DbSet<Admin> Admins { get; set; }
         public DbSet<Branch> Branchs { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Car> Cars { get; set; }
@@ -28,9 +27,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<City> Cities { get; set; }
         public DbSet<Class> Classes { get; set; }
         public DbSet<Color> Colors { get; set; }
-        public DbSet<Customer> Customers { get; set; }
         public DbSet<DrivingInformation> DrivingInformations { get; set; }
-        public DbSet<Employee> Employees { get; set; }
         public DbSet<Fuel> Fuels { get; set; }
         public DbSet<Gear> Gears { get; set; }
         public DbSet<IdentityInformation> IdentityInformations { get; set; }
@@ -39,6 +36,7 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CarImage>().HasKey(c => c.ImageId);

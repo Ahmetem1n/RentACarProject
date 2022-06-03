@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -10,7 +12,6 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    [SecuredOperation("Yönetici,Çalışan")]
     public class IdentityInformationManager : IIdentityInformationService
     {
         IIdentityInformationDal _identityInformationDal;
@@ -20,6 +21,7 @@ namespace Business.Concrete
             _identityInformationDal = identityInformationDal;
         }
 
+        [ValidationAspect(typeof(IdentityInformationValidator))]
         public IResult Add(IdentityInformation identityInformation)
         {
             _identityInformationDal.Add(identityInformation);

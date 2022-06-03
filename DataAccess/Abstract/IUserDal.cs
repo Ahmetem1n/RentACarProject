@@ -11,7 +11,7 @@ namespace DataAccess.Abstract
     {
         List<OperationClaim> GetClaims(User user);
         List<UserDetailDto> GetByCustomers();
-        OperationClaim GetByUserClaim(User user);
+        OperationClaim GetByUserClaim(long userId);
         List<User> GetByRoles(string claimName);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -22,14 +24,15 @@ namespace Business.Concrete
             _branchDal = branchDal;
         }
 
-        [SecuredOperation("Yönetici,Çalışan")]
+        [SecuredOperation("Yönetici")]
+        [ValidationAspect(typeof(BranchValidator))]
         public IResult Add(Branch branch)
         {
             _branchDal.Add(branch);
             return new SuccessResult(Messages.Added);
         }
 
-        [SecuredOperation("Yönetici,Çalışan")]
+        [SecuredOperation("Yönetici")]
         public IResult Delete(Branch branch)
         {
             _branchDal.Delete(branch);
@@ -56,7 +59,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Branch>(_branchDal.Get(b => b.BranchId == branchId), Messages.Get);
         }
 
-        [SecuredOperation("Yönetici,Çalışan")]
+        [SecuredOperation("Yönetici")]
         public IResult Update(Branch branch)
         {
             _branchDal.Update(branch);

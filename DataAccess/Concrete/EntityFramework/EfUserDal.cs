@@ -28,7 +28,6 @@ namespace DataAccess.Concrete.EntityFramework
                                  LastName = u.LastName,
                                  NationalityId = u.NationalityId,
                                  Email = u.Email,
-                                 Photo = u.Photo,
                                  Status = u.Status,
                                  BirthYear = u.BirthYear,
                                  PasswordHash=u.PasswordHash,
@@ -49,19 +48,19 @@ namespace DataAccess.Concrete.EntityFramework
                              join operationClaim in context.OperationClaims
                                 on userOperationClaim.ClaimId equals operationClaim.ClaimId
                              where operationClaim.ClaimName == claimName
-                             select new User { UserId = user.UserId, FirstName = user.FirstName, LastName = user.LastName, NationalityId = user.NationalityId, Email = user.Email, Photo = user.Photo, PasswordSalt = user.PasswordSalt, PasswordHash = user.PasswordHash, Status = user.Status, BirthYear = user.BirthYear };
+                             select new User { UserId = user.UserId, FirstName = user.FirstName, LastName = user.LastName, NationalityId = user.NationalityId, Email = user.Email, PasswordSalt = user.PasswordSalt, PasswordHash = user.PasswordHash, Status = user.Status, BirthYear = user.BirthYear };
                 return result.ToList();
             }
         }
 
-        public OperationClaim GetByUserClaim(User user)
+        public OperationClaim GetByUserClaim(long userId)
         {
             using (var context = new RentACarProjectContext())
             {
                 var result = from o in context.OperationClaims
                              join uo in context.UserOperationClaims
                                  on o.ClaimId equals uo.ClaimId
-                             where uo.UserId == user.UserId
+                             where uo.UserId == userId
                              select new OperationClaim { ClaimId = o.ClaimId, ClaimName = o.ClaimName };
                 return result.FirstOrDefault();
             }

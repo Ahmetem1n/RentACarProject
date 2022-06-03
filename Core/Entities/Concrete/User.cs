@@ -12,7 +12,6 @@ namespace Core.Entities.Concrete
         public string Email { get; set; }
         public string NationalityId { get; set; }
         public int BirthYear { get; set; }
-        public string  Photo { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string Status { get; set; }

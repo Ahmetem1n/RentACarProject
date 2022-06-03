@@ -5,6 +5,8 @@ using System.Text;
 using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -23,6 +25,7 @@ namespace Business.Concrete
             _rentalDetailService = rentalDetailService;
         }
         [SecuredOperation("Yönetici,Çalışan")]
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
             if (car.DailyPrice > 0 && car.Description.Length >= 2)
@@ -57,11 +60,11 @@ namespace Business.Concrete
 
         public IDataResult<List<CarDetailDto>> GetByUsable(DateTime rentDate, DateTime returnDate, long branchId)
         {
-            //if (rentDate.DayOfYear < DateTime.Now.DayOfYear || returnDate.DayOfYear < DateTime.Now.DayOfYear ||
-            //    rentDate.DayOfYear > DateTime.Now.DayOfYear + 30 || returnDate.DayOfYear > DateTime.Now.DayOfYear + 30)
-            //{
-            //    return new ErrorDataResult<List<CarDetailDto>>("Geçmiş Tarih Seçtiniz");
-            //}
+            if (rentDate.DayOfYear < DateTime.Now.DayOfYear || returnDate.DayOfYear < DateTime.Now.DayOfYear ||
+                rentDate.DayOfYear > DateTime.Now.DayOfYear + 30 || returnDate.DayOfYear > DateTime.Now.DayOfYear + 30)
+            {
+                return new ErrorDataResult<List<CarDetailDto>>("En Erken Bugün ve En Geç 30 Gün Sonrasını Seçebilirsiniz.");
+            }
 
             List<CarDetailDto> kullanilabilirArabalar = _carDal.GetByUsable(branchId);
             List<RentalDetail> rentalDetailList = _rentalDetailService.GetAll().Data;
@@ -96,16 +99,6 @@ namespace Business.Concrete
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails().OrderBy(c => c.BrandName).ToList(), Messages.Listed);
-        }
-
-        public IDataResult<List<Car>> GetCarsByBrandId(long brandId)
-        {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.BrandId == brandId), Messages.Listed);
-        }
-
-        public IDataResult<List<Car>> getCarsByColorId(long colorId)
-        {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == colorId), Messages.Listed);
         }
 
         [SecuredOperation("Yönetici,Çalışan")]

@@ -17,9 +17,6 @@ namespace Business.DependencyResolvers.Autofac
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<AdminManager>().As<IAdminService>();
-            builder.RegisterType<EfAdminDal>().As<IAdminDal>();
-
             builder.RegisterType<BranchManager>().As<IBranchService>();
             builder.RegisterType<EfBranchDal>().As<IBranchDal>();
 
@@ -47,14 +44,8 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<ColorManager>().As<IColorService>();
             builder.RegisterType<EfColorDal>().As<IColorDal>();
 
-            builder.RegisterType<CustomerManager>().As<ICustomerService>();
-            builder.RegisterType<EfCustomerDal>().As<ICustomerDal>();
-
             builder.RegisterType<DrivingInformationManager>().As<IDrivingInformationService>();
             builder.RegisterType<EfDrivingInformationDal>().As<IDrivingInformationDal>();
-
-            builder.RegisterType<EmployeeManager>().As<IEmployeeService>();
-            builder.RegisterType<EfEmployeeDal>().As<IEmployeeDal>();
 
             builder.RegisterType<FuelManager>().As<IFuelService>();
             builder.RegisterType<EfFuelDal>().As<IFuelDal>();

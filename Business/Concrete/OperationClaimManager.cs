@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -11,7 +13,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    // [SecuredOperation("Yönetici")]
+     
     public class OperationClaimManager : IOperationClaimService
     {
         IOperationClaimDal _operationClaimDal;
@@ -21,12 +23,15 @@ namespace Business.Concrete
             _operationClaimDal = operationClaimDal;
         }
 
+        [SecuredOperation("Yönetici")]
+        [ValidationAspect(typeof(OperationClaimValidator))]
         public IResult Add(OperationClaim operationClaim)
         {
             _operationClaimDal.Add(operationClaim);
             return new SuccessResult(Messages.Added);
         }
 
+        [SecuredOperation("Yönetici")]
         public IResult Delete(OperationClaim operationClaim)
         {
             _operationClaimDal.Delete(operationClaim);
@@ -43,6 +48,7 @@ namespace Business.Concrete
             return new SuccessDataResult<OperationClaim>(_operationClaimDal.Get(o => o.ClaimId == claimId), Messages.Get);
         }
 
+        [SecuredOperation("Yönetici")]
         public IResult Update(OperationClaim operationClaim)
         {
             _operationClaimDal.Update(operationClaim);

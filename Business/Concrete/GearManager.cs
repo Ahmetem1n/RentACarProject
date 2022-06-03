@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,6 +23,7 @@ namespace Business.Concrete
         }
 
         [SecuredOperation("Yönetici,Çalışan")]
+        [ValidationAspect(typeof(GearValidator))]
         public IResult Add(Gear gear)
         {
             _gearDal.Add(gear);

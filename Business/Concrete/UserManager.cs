@@ -1,6 +1,8 @@
 ﻿using Business.Abstract;
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.Entities.Concrete;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -12,11 +14,11 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    //[SecuredOperation("Yönetici,Çalışan")]
     public class UserManager : IUserService
     {
         IUserDal _userDal;
         IUserOperationClaimService _userOperationClaimService;
+        
 
         public UserManager(IUserDal userDal, IUserOperationClaimService userOperationClaimService)
         {
@@ -24,12 +26,14 @@ namespace Business.Concrete
             _userOperationClaimService = userOperationClaimService;
         }
 
+        [ValidationAspect(typeof(UserValidator))]
         public IResult Add(User user)
         {
             _userDal.Add(user);
             return new SuccessResult(Messages.Added);
         }
 
+        [SecuredOperation("Yönetici,Çalışan")]
         public IResult Delete(User user)
         {
             var userOperationClaim = _userOperationClaimService.GetByUserId(user.UserId).Data;
@@ -41,9 +45,10 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Deleted);
         }
 
+        [SecuredOperation("Yönetici,Çalışan")]
         public IDataResult<List<User>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll().OrderBy(u=>u.FirstName).ToList(), Messages.Listed);
+            return new SuccessDataResult<List<User>>(_userDal.GetAll().OrderBy(u => u.FirstName).ToList(), Messages.Listed);
         }
 
         public IDataResult<List<User>> GetByRoles(string claimName)
@@ -90,22 +95,21 @@ namespace Business.Concrete
                     Email = user.Email,
                     NationalityId = user.NationalityId,
                     BirthYear = user.BirthYear,
-                    Photo = user.Photo,
                     Status = user.Status,
                     PasswordHash = user.PasswordHash,
                     PasswordSalt = user.PasswordSalt,
-                    ClaimName = GetByUserClaim(user).ClaimName,
-                    ClaimId = GetByUserClaim(user).ClaimId
+                    ClaimName = GetByUserClaim(user.UserId).Data.ClaimName,
+                    ClaimId = GetByUserClaim(user.UserId).Data.ClaimId
                 });
             }
 
             return new SuccessDataResult<List<UserDetailDto>>(userDetailDto.OrderBy(u => u.FirstName).ToList(), Messages.Listed);
         }
 
-        public OperationClaim GetByUserClaim(User user)
+        public IDataResult<OperationClaim> GetByUserClaim(long userId)
         {
-            var result = _userDal.GetByUserClaim(user);
-            return result != null ? result : new OperationClaim { ClaimId = 0, ClaimName = "Yetki Yok" };
+            var result = _userDal.GetByUserClaim(userId);
+            return result != null ? new SuccessDataResult<OperationClaim>(result) : new SuccessDataResult<OperationClaim>(new OperationClaim { ClaimId = 0, ClaimName = "Yetki Yok" });
         }
 
         public IDataResult<List<UserDetailDto>> GetByCustomers()

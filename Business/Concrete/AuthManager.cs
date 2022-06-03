@@ -11,14 +11,13 @@ namespace Business.Concrete
     public class AuthManager : IAuthService
     {
         private IUserService _userService;
-        private IOperationClaimService _operationClaimService;
+        
         private IUserOperationClaimService _userOperationClaimService;
         private ITokenHelper _tokenHelper;
 
-        public AuthManager(IUserService userService, IOperationClaimService operationClaimService, IUserOperationClaimService userOperationClaimService, ITokenHelper tokenHelper)
+        public AuthManager(IUserService userService, IUserOperationClaimService userOperationClaimService, ITokenHelper tokenHelper)
         {
             _userService = userService;
-            _operationClaimService = operationClaimService;
             _userOperationClaimService = userOperationClaimService;
             _tokenHelper = tokenHelper;
         }
@@ -34,13 +33,12 @@ namespace Business.Concrete
                 LastName = userForRegisterDto.LastName,
                 NationalityId = userForRegisterDto.NationalityId,
                 BirthYear = userForRegisterDto.BirthYear,
-                Photo = userForRegisterDto.Photo,
                 PasswordHash = passwordHash,
                 PasswordSalt = passwordSalt,
                 Status = "Aktif"
             };
             _userService.Add(user);
-            _userOperationClaimService.Add(new UserOperationClaim { ClaimId = _operationClaimService.GetAll().Data.Find(o => o.ClaimName.Equals("Müşteri")).ClaimId, UserId = _userService.GetAll().Data.Find(u => u.Email == user.Email).UserId });
+            _userOperationClaimService.Add(new UserOperationClaim { ClaimId = userForRegisterDto.ClaimId, UserId = _userService.GetAll().Data.Find(u => u.Email == user.Email).UserId });
             return new SuccessDataResult<User>(user, Messages.UserRegistered);
         }
 

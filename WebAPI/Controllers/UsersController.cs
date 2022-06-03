@@ -85,6 +85,17 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
+        [HttpGet("getByUserClaim")]
+        public IActionResult GetByUserClaim(long userId)
+        {
+            var result = _userService.GetByUserClaim(userId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(User user)
         {
