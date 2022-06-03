@@ -36,7 +36,7 @@ namespace Business.Concrete
                 return new ErrorResult("Kimlik Bilgisi veya Ehliyet Bilgisi Bulunmayan Müşteriler Araç Kiralama Yapamaz. Bilgileri güncelledikten sonra tekrar deneyiniz.");
             }
             _rentalDetailDal.Add(rentalDetail);
-            return new SuccessResult(Messages.Added);
+            return new SuccessResult(Messages.Rented);
         }
 
         [SecuredOperation("Yönetici,Çalışan")]
