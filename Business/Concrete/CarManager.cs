@@ -18,11 +18,13 @@ namespace Business.Concrete
     {
         ICarDal _carDal;
         IRentalDetailService _rentalDetailService;
+        ICarImageService _carImageService;
 
-        public CarManager(ICarDal carDal, IRentalDetailService rentalDetailService)
+        public CarManager(ICarDal carDal, IRentalDetailService rentalDetailService, ICarImageService carImageService)
         {
             _carDal = carDal;
             _rentalDetailService = rentalDetailService;
+            _carImageService = carImageService;
         }
         [SecuredOperation("Yönetici,Çalışan")]
         [ValidationAspect(typeof(CarValidator))]
@@ -65,6 +67,10 @@ namespace Business.Concrete
             {
                 return new ErrorDataResult<List<CarDetailDto>>("En Erken Bugün ve En Geç 30 Gün Sonrasını Seçebilirsiniz.");
             }
+            if (returnDate < rentDate)
+            {
+                return new ErrorDataResult<List<CarDetailDto>>("Bırakış Tarihi Alış Tarihinden Önce Olamaz.");
+            }
 
             List<CarDetailDto> kullanilabilirArabalar = _carDal.GetByUsable(branchId);
             List<RentalDetail> rentalDetailList = _rentalDetailService.GetAll().Data;
@@ -91,6 +97,11 @@ namespace Business.Concrete
                     }
                 }
 
+            }
+
+            for (int i = 0; i < kullanilabilirArabalar.Count; i++)
+            {
+                kullanilabilirArabalar[i].CarImages = _carImageService.GetByCarId(kullanilabilirArabalar[i].CarId).Data ;
             }
 
             return new SuccessDataResult<List<CarDetailDto>>(kullanilabilirArabalar, Messages.Get);

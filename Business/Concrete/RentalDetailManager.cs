@@ -33,7 +33,7 @@ namespace Business.Concrete
             if (_drivingInformationDal.Get(d => d.UserId == rentalDetail.UserId) == null ||
                 _identityInformationDal.Get(i => i.UserId == rentalDetail.UserId) == null)
             {
-                return new ErrorResult("Kimlik Bilgisi veya Ehliyet Bilgisi Bulunmayan Müşteriler Araç Kiralama Yapamaz. Bilgileri güncelledikten sonra tekrar deneyiniz.");
+                return new ErrorResult("Kimlik Bilgisi veya Ehliyet Bilgisi Bulunmayan Müşterilere Araç Kiralama Yapılamaz. Bilgileri güncelledikten sonra tekrar deneyiniz.");
             }
             _rentalDetailDal.Add(rentalDetail);
             return new SuccessResult(Messages.Rented);

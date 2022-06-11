@@ -45,7 +45,6 @@ namespace Business.Concrete
             return new SuccessResult(Messages.Deleted);
         }
 
-        [SecuredOperation("Yönetici,Çalışan")]
         public IDataResult<List<User>> GetAll()
         {
             return new SuccessDataResult<List<User>>(_userDal.GetAll().OrderBy(u => u.FirstName).ToList(), Messages.Listed);

@@ -1,4 +1,5 @@
 ﻿using Core.Entities;
+using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -23,5 +24,6 @@ namespace Entities.DTOs
         public string Description { get; set; }
         public string CarUsable { get; set; }
         public string CarLocation { get; set; }
+        public List<CarImage> CarImages { get; set; }
     }
 }

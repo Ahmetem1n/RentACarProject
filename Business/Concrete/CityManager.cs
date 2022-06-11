@@ -28,6 +28,5 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<City>(_cityDal.Get(c => c.CityId == cityId), Messages.Get);
         }
-
     }
 }
